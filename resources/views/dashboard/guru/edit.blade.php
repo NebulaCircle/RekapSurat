@@ -8,6 +8,7 @@
                 <div class="card">
                   <form action="/admin/guru/{{ $guru->id }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="card-header">
                       <h4>Edit Guru</h4>
                     </div>
@@ -16,7 +17,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Nip</label>
-                                <input type="text" class="form-control" value="{{ $guru->nip }}" required="">
+                                <input type="text" name="nip" class="form-control" value="{{ $guru->nip }}" required="">
                                 @error('nip')
                                   <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -25,7 +26,7 @@
                         <div class="col-6">
                          <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" value="{{ $guru->nama_lengkap }}" required="">
+                                <input type="text" name="nama_lengkap" class="form-control" value="{{ $guru->nama_lengkap }}" required="">
                                 @error('nama_lengkap')
                                   <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -47,8 +48,8 @@
                         <div class="col-6">
                             <div class="form-group">
                         <label class="w-100">Tipe</label>
-                        <input type="radio" name="tipe" {{ $guru->tipe == "walikelas" ? 'checked' : '' }} value="laki-laki"> Wali Kelas
-                        <input type="radio" name="tipe" class="ml-3" {{ $guru->tipe == "bk" ? 'checked' : '' }} value="perempuan"> Bimbingan Konseling
+                        <input type="radio" name="tipe" {{ $guru->tipe == "walikelas" ? 'checked' : '' }} value="walikelas"> Wali Kelas
+                        <input type="radio" name="tipe" class="ml-3" {{ $guru->tipe == "bk" ? 'checked' : '' }} value="bk"> Bimbingan Konseling
                         @error('tipe')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
