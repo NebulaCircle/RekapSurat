@@ -14,7 +14,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        $siswa = Siswa::all();
+        return view("dashboard.siswa.index",compact('siswa'));
     }
 
     /**

@@ -4,21 +4,21 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="/admin/kelas/create" class="btn btn-success">Tambah Kelas</a>
+            <a href="/admin/tahun_ajaran/create" class="btn btn-success">Tambah Tahun Ajaran</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-md">
                     <tr>
                         <th>No</th>
-                        <th>tahun ajaran</th>
+                        <th>Tahun Ajaran</th>
                         <th>Semester</th>
                         <th>Action</th>
                     </tr>
                     @forelse ($tahunAjaran as $ta)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $ta->tahun_awal }} {{ $ta->tahun_akhir }}</td>
+                            <td>{{ $ta->tahun_ajaran_awal }} / {{ $ta->tahun_ajaran_akhir }}</td>
                             <td>{{ $ta->semester }}</td>
                             <td><a href="/admin/tahun_ajaran/{{ $ta->id }}/edit" class="btn btn-success">Edit</a>
                                 <form class="d-inline" action="/admin/tahun_ajaran/{{ $ta->id }}" method="post">
