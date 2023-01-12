@@ -67,7 +67,8 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        return view('dashboard.siswa.edit',compact('siswa'));
+         $kelas = Kelas::all();
+        return view('dashboard.siswa.edit',compact('siswa','kelas'));
     }
 
     /**

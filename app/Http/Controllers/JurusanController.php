@@ -14,7 +14,8 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        return view('dashboard.jurusan.index');
+        $jurusan = Jurusan::all();
+        return view('dashboard.jurusan.index', compact('jurusan'));
     }
 
     /**
@@ -24,7 +25,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.jurusan.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_jurusan' => 'required',
+            'kode_jurusan' => 'required',
+        ], [
+            'nama_jurusan.required' => 'Wajib Diisi',
+            'kode_jurusan.required' => 'Wajib Diisi',
+        ]);
+
+        Jurusan::create($request->except('_token'));
+        return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Tambahkan");
     }
 
     /**
@@ -46,7 +56,6 @@ class JurusanController extends Controller
      */
     public function show(Jurusan $jurusan)
     {
-        //
     }
 
     /**
@@ -57,7 +66,7 @@ class JurusanController extends Controller
      */
     public function edit(Jurusan $jurusan)
     {
-        //
+        return view('dashboard.jurusan.edit', compact('jurusan'));
     }
 
     /**
@@ -69,7 +78,16 @@ class JurusanController extends Controller
      */
     public function update(Request $request, Jurusan $jurusan)
     {
-        //
+        $request->validate([
+            'nama_jurusan' => 'required',
+            'kode_jurusan' => 'required',
+        ], [
+            'nama_jurusan.required' => 'Wajib Diisi',
+            'kode_jurusan.required' => 'Wajib Diisi',
+        ]);
+
+        $jurusan->update($request->except('_token'));
+        return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Perbarui");
     }
 
     /**
@@ -80,6 +98,7 @@ class JurusanController extends Controller
      */
     public function destroy(Jurusan $jurusan)
     {
-        //
+        $jurusan->delete();
+        return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Hapus");
     }
 }

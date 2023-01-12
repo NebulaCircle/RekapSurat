@@ -21,6 +21,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
+
                             <table class="table table-bordered table-md">
                                 <tr>
                                     <th>No</th>
@@ -30,13 +31,18 @@
                                 </tr>
                                 @foreach ($jurusan as $j)
                                     <tr>
+                                        <td>{{ $j->id }}</td>
                                         <td>{{ $j->nama_jurusan }}</td>
                                         <td>{{ $j->kode_jurusan }}</td>
-
-                                        <td>
-                                            <div class="badge badge-success">{{ $j->kode_jurusan }}</div>
+                                        <td><a href="/admin/jurusan/{{ $j->id }}/edit"
+                                                class="btn btn-success">Edit</a>
+                                            <form class="d-inline" action="/admin/jurusan/{{ $j->id }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                            </form>
                                         </td>
-                                        <td><a href="#" class="btn btn-secondary">Hapus</a></td>
                                     </tr>
                                 @endforeach
                             </table>

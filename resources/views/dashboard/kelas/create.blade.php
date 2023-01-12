@@ -46,6 +46,18 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+                    <div class="mb-3 col-lg-4">
+                        <label class="w-100">Tahun Ajaran</label>
+                        <select name="id_jurusan" class="form-control" id="">
+                            <option value="">Pilih Tahun Ajaran</option>
+                            @foreach ($jurusan as $j)
+                                <option value="{{ $j->id }}">{{ $j->nama_jurusan }}</option>
+                            @endforeach
+                        </select>
+                        @error('id_jurusan')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-success">Simpan</button>
             </form>
