@@ -26,15 +26,15 @@
                             <label>Nama Jurusan</label>
                             <input name="nama_jurusan" type="text" value="{{ old('nama_jurusan') }}"
                                 placeholder="Nama Jurusan" class="form-control">
-                            @error('namajurusan')
+                            @error('nama_jurusan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Kode Jurusan</label>
-                            <input name="kode_jurusan" type="number" value="{{ old('nama_jurusan') }}"
+                            <input name="kode_jurusan" type="text" value="{{ old('nama_jurusan') }}"
                                 placeholder="Kode Jurusan" class="form-control">
-                            @error('kodejurusan')
+                            @error('kode_jurusan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>

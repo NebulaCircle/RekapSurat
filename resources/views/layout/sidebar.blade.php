@@ -35,6 +35,10 @@
               <li class="nav-item dropdown ">
                   <a href="/admin/jurusan" class="nav-link "><i class="fa fa-atom"></i><span>Jurusan</span></a>
               </li>
+              <li class="nav-item dropdown ">
+                  <a href="/admin/tahun_ajaran" class="nav-link "><i class="fa fa-calendar-alt"></i><span>Tahun
+                          Ajaran</span></a>
+              </li>
 
           </ul>
 
