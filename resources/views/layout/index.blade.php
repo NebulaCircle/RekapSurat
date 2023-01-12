@@ -20,8 +20,7 @@
 </head>
 
 <body class="antialiased">
-
-
+@include('sweetalert::alert')
 
 
     <div id="app">

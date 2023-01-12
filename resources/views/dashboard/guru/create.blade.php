@@ -16,7 +16,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Nip</label>
-                                <input type="text" name="nip" class="form-control" required="">
+                                <input type="text" value="{{ old('nip') }}" name="nip" class="form-control" required="">
                                 @error('nip')
                                   <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -25,7 +25,7 @@
                         <div class="col-6">
                          <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" name="nama_lengkap" class="form-control" required="">
+                                <input value="{{ old('nama_lengkap') }}" type="text" name="nama_lengkap" class="form-control" required="">
                                 @error('nama_lengkap')
                                   <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -38,7 +38,7 @@
                         <div class="col-6">
                           <div class="form-group">
                           <label class="w-100">Jenis kelamin</label>
-                          <input type="radio" name="jk" value="l"> laki-laki
+                          <input type="radio"  name="jk" value="l"> laki-laki
                           <input type="radio" name="jk" class="ml-3" value="p"> Perempuan
                                 @error('jk')
                                   <small class="text-danger">{{ $message }}</small>

@@ -16,37 +16,16 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/admin/jurusan" class="btn btn-success m-3"> Tambah Jurusan</a>
-
-                    </div>
-                    <div class="card-body">
-<<<<<<< HEAD
-                    <div class="table-responsive">
-                      <a href="/admin/jurusan"><button class="btn btn-primary m-3" type="submit">Tambah Data</button></a>
-                      <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModalCenter">
+                        <a href="/admin/jurusan/create" class="btn btn-success m-2"> Tambah Jurusan</a>
+     <button type="button" class="btn btn-primary ml-1" data-toggle="modal" data-target="#exampleModalCenter">
                         Import
                       </button>
-                      <table class="table table-bordered table-md">
-                        <tr>
-                          <th>No</th>
-                          <th>Nama Jurusan</th>
-                          <th>Kode Jurusan</th>
-                          <th>Action</th>
-                        </tr>
-                        {{-- @foreach ($jurusan as $view)
-                        <tr>
-                          <td>{{ $view-> }}</td>
-                          <td>{{ $view-> }}</td>
-                          <td>{{ $view-> }}</td>
-                          <td><div class="badge badge-success">{{ $view->tipe }}</div></td>
-                          <td><a href="#" class="btn btn-secondary">Hapus</a></td>
-                        </tr>
-                        @endforeach --}}
-                      </table>
-=======
-                        <div class="table-responsive">
-
-                            <table class="table table-bordered table-md">
+                    </div>
+                    <div class="card-body">
+                    <div class="table-responsive">
+                     
+                 
+                     <table class="table table-bordered table-md">
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Jurusan</th>
@@ -70,12 +49,9 @@
                                     </tr>
                                 @endforeach
                             </table>
-                        </div>
->>>>>>> f34cb7c4468103b7f24f072cace9f502d0d4dd18
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
         </section>
 
 
@@ -102,8 +78,4 @@
     </div>
   </div>
 </div>
-=======
-        </div>
-    </section>
->>>>>>> f34cb7c4468103b7f24f072cace9f502d0d4dd18
 @endsection

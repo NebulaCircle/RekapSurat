@@ -11,6 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
         $fil = Request()->fil;
         $siswa = Siswa::count();
         $kelas = Kelas::count();

@@ -46,6 +46,7 @@ class GuruController extends Controller
         ]);
 
         Guru::create($request->except('_token'));
+        alert()->success('Guru berhasil Di Tambahkan', 'Berhasil');
         return redirect('/admin/guru')->with('pesan','kelas berhasil di tambahkan');
     }
 
@@ -80,8 +81,8 @@ class GuruController extends Controller
      */
     public function update(Request $request, Guru $guru)
     {
-        $request->validate([
-            'nip' => 'required',
+         $request->validate([
+            'nip' => 'required|min:18|max:18',
             'nama_lengkap' => 'required',
             'jk' => 'required',
             'tipe' => 'required'
