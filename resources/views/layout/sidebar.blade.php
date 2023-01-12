@@ -24,7 +24,7 @@
                           <a href="#" class="nav-link "><span>Siswa</span></a>
                       </li>
                       <li class="nav-item dropdown ">
-                          <a href="#" class="nav-link "><span>Guru</span></a>
+                          <a href="/admin/guru" class="nav-link "><span>Guru</span></a>
                       </li>
                   </ul>
               </li>
