@@ -51,15 +51,15 @@ Route::middleware(['auth'])->group(function () {
    
 
     // route import data
-    Route::post('/import/siswa',[ImportController::class,'importSiswa']);
-    Route::post('/import/jurusan',[ImportController::class,'importJurusan']);
-    Route::post('/import/kelas',[ImportController::class,'importKelas']);
-    Route::post('/import/guru',[ImportController::class,'importGuru']);
+    Route::post('/import/siswa',[ImportController::class,'siswaImport']);
+    Route::post('/import/jurusan',[ImportController::class,'jurusanImport']);
+    Route::post('/import/kelas',[ImportController::class,'kelasImport']);
+    Route::post('/import/guru',[ImportController::class,'guruImport']);
 
     // route export data
-    Route::get('/export/guru',[ExportController::class,'exportGuru']);
-    Route::get('/export/siswa',[ExportController::class,'exportSiswa']);
-    Route::get('/export/jurusan',[ExportController::class,'exportJurusan']);
-    Route::get('/export/kelas',[ExportController::class,'exportKelas']);
-    Route::get('/export/rekap',[ExportController::class,'exportKelas']);
+    Route::get('/export/guru',[ExportController::class,'guruExport']);
+    Route::get('/export/siswa',[ExportController::class,'siswaExport']);
+    Route::get('/export/jurusan',[ExportController::class,'jurusanExport']);
+    Route::get('/export/kelas',[ExportController::class,'kelasExport']);
+    Route::get('/export/rekap',[ExportController::class,'rekapExport']);
 });
