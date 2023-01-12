@@ -33,7 +33,7 @@
                   <a href="#" class="nav-link "><i class="fa fa-chalkboard"></i><span>Kelas</span></a>
               </li>
               <li class="nav-item dropdown ">
-                  <a href="#" class="nav-link "><i class="fa fa-atom"></i><span>Jurusan</span></a>
+                  <a href="/admin/jurusan" class="nav-link "><i class="fa fa-atom"></i><span>Jurusan</span></a>
               </li>
 
           </ul>

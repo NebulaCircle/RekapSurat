@@ -14,7 +14,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.jurusan.index');
     }
 
     /**
