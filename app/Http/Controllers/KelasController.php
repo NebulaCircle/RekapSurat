@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -14,7 +15,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $kelas = Kelas::with('jurusan')->paginate(1);
+        return view('dashboard.kelas.index',compact('kelas'));
     }
 
     /**
@@ -24,7 +26,8 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        $jurusan = Jurusan::all();
+        return view('dashboard.kelas.create',compact('jurusan'));
     }
 
     /**
@@ -35,7 +38,14 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Request()->validate([
+            "kelas"=>'required',
+            'no_kelas'=>'required',
+            'id_jurusan'=>'required'
+        ]);
+        Kelas::create(Request()->except('_token'));
+
+        return redirect("/admin/kelas")->with('pesan','kelas berhasil di tambahkan');
     }
 
     /**
@@ -55,9 +65,11 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit($id)
     {
-        //
+        $kelas = Kelas::find($id);
+        $jurusan = Jurusan::all();
+       return view('dashboard.kelas.edit',compact('kelas','jurusan'));
     }
 
     /**
@@ -67,9 +79,17 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request,$id)
     {
-        //
+           Request()->validate([
+            "kelas"=>'required',
+            'no_kelas'=>'required',
+            'id_jurusan'=>'required'
+        ]);
+        
+        Kelas::where('id',$id)->update(Request()->except(['_token',"_method"]));
+        
+        return redirect("/admin/kelas")->with('pesan','kelas berhasil di mengubah');
     }
 
     /**
@@ -80,6 +100,7 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
+        $kelas->delete();
+        return redirect("/admin/kelas")->with('pesan','kelas berhasil di hapus');
     }
 }
