@@ -48,13 +48,14 @@
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label class="w-100">Tahun Ajaran</label>
-                        <select name="id_jurusan" class="form-control" id="">
+                        <select name="id_ajaran" class="form-control" id="">
                             <option value="">Pilih Tahun Ajaran</option>
-                            @foreach ($jurusan as $j)
-                                <option value="{{ $j->id }}">{{ $j->nama_jurusan }}</option>
+                            @foreach ($tahunAjaran as $ta)
+                                <option value="{{ $ta->id }}">{{ $ta->tahun_ajaran_awal }}/
+                                    {{ $ta->tahun_ajaran_akhir }} {{ $ta->semester }}</option>
                             @endforeach
                         </select>
-                        @error('id_jurusan')
+                        @error('id_ajaran')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

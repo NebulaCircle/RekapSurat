@@ -11,7 +11,7 @@ class Kelas extends Model
     use HasFactory;
     protected $table = "kelas";
     protected $hidden = ['id_jurusan','id_ajaran'];
-    protected $fillable = ['kelas','no_kelas','id_jurusan',];
+    protected $fillable = ['kelas','no_kelas','id_jurusan','id_ajaran'];
     public $timestamps = false;
 
       public function siswa()

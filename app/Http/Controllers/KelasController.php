@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\TahunAjaran;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,10 @@ class KelasController extends Controller
      */
     public function create()
     {
+        $tahunAjaran = TahunAjaran::all();
         $jurusan = Jurusan::all();
-        return view('dashboard.kelas.create',compact('jurusan'));
+
+        return view('dashboard.kelas.create',compact('tahunAjaran','jurusan'));
     }
 
     /**
@@ -41,7 +44,8 @@ class KelasController extends Controller
         Request()->validate([
             "kelas"=>'required',
             'no_kelas'=>'required',
-            'id_jurusan'=>'required'
+            'id_jurusan'=>'required',
+            'id_ajaran'=>'required'
         ]);
         Kelas::create(Request()->except('_token'));
 
