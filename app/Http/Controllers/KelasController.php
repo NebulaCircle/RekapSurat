@@ -89,7 +89,7 @@ class KelasController extends Controller
         
         Kelas::where('id',$id)->update(Request()->except(['_token',"_method"]));
         
-        return redirect("/admin/kelas")->with('pesan','kelas berhasil di mengubah');
+        return redirect("/admin/kelas")->with('pesan','kelas berhasil di edit');
     }
 
     /**
