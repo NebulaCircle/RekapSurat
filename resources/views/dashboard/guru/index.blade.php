@@ -20,6 +20,7 @@
                     </div>
                     <div class="card-body">
                     <div class="table-responsive">
+                      <a href="/admin/create"><button class="btn btn-primary m-3" type="submit">Tambah Data</button></a>
                       <table class="table table-bordered table-md">
                         <tr>
                           <th>No</th>
