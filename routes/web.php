@@ -11,6 +11,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TahunAjaranController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,11 @@ use App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/',function()
+{
+   return redirect('/login'); 
+});
 
 Route::get('login',[AuthController::class,'loginPage'])->name('login');
 Route::post('login',[AuthController::class,'loginCheck']);
@@ -34,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/kelas', KelasController::class);
     Route::resource('/jurusan', JurusanController::class);
     Route::resource('/guru', GuruController::class);
+    Route::resource('/rekap', RekapController::class);
+    Route::resource('/tahun_ajaran', TahunAjaranController::class);
    });
 
     Route::resource('/dashboard', DashboardController::class);

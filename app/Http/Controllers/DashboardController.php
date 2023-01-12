@@ -11,11 +11,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $fil = Request()->fil;
         $siswa = Siswa::count();
         $kelas = Kelas::count();
         $jurusan = Jurusan::count();
         $rekap = Rekap::count();
 
-        return view('dashboard.index',compact('siswa','kelas','jurusan','rekap'));
+        $sakit = Rekap::where('status','sakit')->whereMonth('tanggal',strtotime($fil?$fil:date('M')))->count();
+        $izin = Rekap::where('status','izin')->whereMonth('tanggal',strtotime($fil?$fil:date('M')))->count();
+        $alpa = Rekap::where('status','alpa')->whereMonth('tanggal',strtotime($fil?$fil:date('M')))->count();
+
+        return view('dashboard.index',compact('siswa','kelas','jurusan','rekap','sakit','izin','alpa','fil'));
     }
 }

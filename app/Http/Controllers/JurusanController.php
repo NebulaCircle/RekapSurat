@@ -40,12 +40,12 @@ class JurusanController extends Controller
             'nama_jurusan' => 'required',
             'kode_jurusan' => 'required',
         ], [
-            'nama_jurusan' => 'Wajib Diisi',
-            'kode_jurusan' => 'Wajib Diisi'
+            'nama_jurusan.required' => 'Wajib Diisi',
+            'kode_jurusan.required' => 'Wajib Diisi',
         ]);
 
         Jurusan::create($request->except('_token'));
-        return redirect('/admin/jurusan');
+        return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Tambahkan");
     }
 
     /**
@@ -66,7 +66,7 @@ class JurusanController extends Controller
      */
     public function edit(Jurusan $jurusan)
     {
-        return view('dashboard.jurusan.edit');
+        return view('dashboard.jurusan.edit', compact('jurusan'));
     }
 
     /**
@@ -80,14 +80,14 @@ class JurusanController extends Controller
     {
         $request->validate([
             'nama_jurusan' => 'required',
-            'kode_jurusan' => 'required'
-        ],[
-            'nama_jurusan' => 'Wajib Diisi',
-            'kode_jurusan' => 'Wajib Diisi'
+            'kode_jurusan' => 'required',
+        ], [
+            'nama_jurusan.required' => 'Wajib Diisi',
+            'kode_jurusan.required' => 'Wajib Diisi',
         ]);
 
-        Jurusan::create($request->except('_token'));
-        return redirect('/admin/jurusan');
+        $jurusan->update($request->except('_token'));
+        return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Perbarui");
     }
 
     /**
@@ -99,6 +99,6 @@ class JurusanController extends Controller
     public function destroy(Jurusan $jurusan)
     {
         $jurusan->delete();
-        return redirect('/admin/jurusan');
+        return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Hapus");
     }
 }

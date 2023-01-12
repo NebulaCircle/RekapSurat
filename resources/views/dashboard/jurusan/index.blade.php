@@ -29,13 +29,19 @@
                                     <th>Kode Jurusan</th>
                                     <th>Action</th>
                                 </tr>
-                                @foreach ($jurusan as $view)
+                                @foreach ($jurusan as $j)
                                     <tr>
-                                        <td>{{ $view->id }}</td>
-                                        <td>{{ $view->nama_jurusan }}</td>
-                                        <td>{{ $view->kode_jurusan }}</td>
-                                        <td><a href="/admin/jurusan{{ $view->id }}" class="btn btn-danger">Hapus</a>
-                                            <a href="#" class="btn btn-info">Edit</a>
+                                        <td>{{ $j->id }}</td>
+                                        <td>{{ $j->nama_jurusan }}</td>
+                                        <td>{{ $j->kode_jurusan }}</td>
+                                        <td><a href="/admin/jurusan/{{ $j->id }}/edit"
+                                                class="btn btn-success">Edit</a>
+                                            <form class="d-inline" action="/admin/jurusan/{{ $j->id }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
