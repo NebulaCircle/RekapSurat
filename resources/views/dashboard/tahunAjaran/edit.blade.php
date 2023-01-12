@@ -4,49 +4,38 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>Ubah Kelas</h4>
+            <h4>Tambah Tahun Ajaran</h4>
         </div>
         <div class="card-body">
-            <form action="/admin/kelas/{{ $kelas->id }}" method="post">
-                @method('PUT')
+            <form action="/admin/tahun_ajaran/{{ $tahunAjaran->id }}" method="post">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="mb-3 col-lg-4">
-                        <label class="w-100">Tingkatan</label>
-                        <select name="kelas" class="form-control" id="">
-                            <option disabled value="">Pilih Kelas</option>
-                            <option selected value="{{ $kelas->kelas }}">{{ $kelas->kelas }}</option>
-                            <option value="X">X</option>
-                            <option value="XI">XI</option>
-                            <option value="XII">XII</option>
-                        </select>
-                        @error('kelas')
+                        <label class="w-100">Tahun Ajaran Awal</label>
+                        <input type="text" value="{{ $tahunAjaran->tahun_ajaran_awal }}" class="form-control"
+                            name="tahun_ajaran_awal" id="">
+                        @error('tahun_ajaran_awal')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label class="w-100">No kelas</label>
-                        <select name="no_kelas" class="form-control" id="">
-                            <option value="" disabled>Pilih No Kelas</option>
-                            <option selected value="{{ $kelas->no_kelas }}">{{ $kelas->no_kelas }}</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                        @error('no_kelas')
+                        <label class="w-100">Tahun Ajaran Akhir</label>
+                        <input type="text" value="{{ $tahunAjaran->tahun_ajaran_akhir }}" class="form-control"
+                            name="tahun_ajaran_akhir" id="">
+                        @error('tahun_ajaran_akhir')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label class="w-100">Jurusan</label>
-                        <select name="id_jurusan" class="form-control" id="">
-                            <option disabled value="">Pilih Jurusan</option>
-                            <option selected value="{{ $kelas->id_jurusan }}">{{ $kelas->jurusan->nama_jurusan }}</option>
-                            @foreach ($jurusan as $j)
-                                <option value="{{ $j->id }}">{{ $j->nama_jurusan }}</option>
-                            @endforeach
+                        <label class="w-100">Semester</label>
+                        <select name="semester" class="form-control" id="">
+                            <option value="" disabled> Pilih Semester</option>
+                            <option value="{{ $tahunAjaran->semester }}">{{ $tahunAjaran->semester }}</option>
+                            <option value="ganjil">Ganjil</option>
+                            <option value="genap">Genap</option>
                         </select>
-                        @error('id_jurusan')
+                        @error('semester')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

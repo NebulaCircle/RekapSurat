@@ -23,6 +23,11 @@ use App\Http\Controllers\TahunAjaranController;
 |
 */
 
+Route::get('/',function()
+{
+   return redirect('/login'); 
+});
+
 Route::get('login',[AuthController::class,'loginPage'])->name('login');
 Route::post('login',[AuthController::class,'loginCheck']);
 Route::get('logout',[AuthController::class,'logout']);
@@ -35,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/kelas', KelasController::class);
     Route::resource('/jurusan', JurusanController::class);
     Route::resource('/guru', GuruController::class);
+    Route::resource('/rekap', RekapController::class);
     Route::resource('/tahun_ajaran', TahunAjaranController::class);
    });
 

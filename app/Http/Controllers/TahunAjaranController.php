@@ -25,7 +25,7 @@ class TahunAjaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.tahunAjaran.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class TahunAjaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Request()->validate([
+            'semester'=>'required',
+            'tahun_ajaran_awal'=>'required',
+            'tahun_ajaran_akhir'=>'required',
+        ]);
+
+        TahunAjaran::create(Request()->except('_token'));
+        return redirect('/admin/tahun_ajaran')->with('pesan','Tahun ajaran berhasil di tambahkan');
     }
 
     /**
@@ -58,7 +65,7 @@ class TahunAjaranController extends Controller
      */
     public function edit(TahunAjaran $tahunAjaran)
     {
-        //
+        return view('dashboard.tahunAjaran.edit',compact('tahunAjaran'));
     }
 
     /**
@@ -70,7 +77,14 @@ class TahunAjaranController extends Controller
      */
     public function update(Request $request, TahunAjaran $tahunAjaran)
     {
-        //
+           Request()->validate([
+            'semester'=>'required',
+            'tahun_ajaran_awal'=>'required',
+            'tahun_ajaran_akhir'=>'required',
+        ]);
+
+        $tahunAjaran->update(Request()->except(['_token','_method']));
+        return redirect('/admin/tahun_ajaran')->with('pesan','Tahun ajaran berhasil di ubah');
     }
 
     /**
