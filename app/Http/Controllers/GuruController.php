@@ -39,7 +39,7 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nip' => 'required',
+            'nip' => 'required|min:18|max:18',
             'nama_lengkap' => 'required',
             'jk' => 'required',
             'tipe' => 'required'
