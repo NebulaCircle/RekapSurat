@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class GuruController extends Controller
 {
@@ -14,7 +15,7 @@ class GuruController extends Controller
      */
     public function index()
     {
-        return view();
+        return view('dashboard.guru.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class GuruController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.guru.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nip' => 'required',
+            'nama_lengkap' => 'required',
+            'jk' => 'required',
+            'tipe' => 'required'
+        ]);
+
+        Guru::create($request->except('_token'));
     }
 
     /**
