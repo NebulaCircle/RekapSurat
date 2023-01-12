@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -25,7 +26,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        $kelas = Kelas::all();
+        return view('dashboard.siswa.create',compact('kelas'));
     }
 
     /**
@@ -36,7 +38,14 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Request()->validate([
+            'nama_lengkap'=>'required|string',
+            'nisn'=>'required|numeric',
+            'jk'=>'required',
+            'id_kelas'=>'required',
+        ]);
+        Siswa::create(Request()->except('_token'));
+        return redirect('/admin/siswa')->with('pesan','Siswa berhasil di tambahkan');
     }
 
     /**
@@ -58,7 +67,8 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        //
+         $kelas = Kelas::all();
+        return view('dashboard.siswa.edit',compact('siswa','kelas'));
     }
 
     /**
@@ -70,7 +80,14 @@ class SiswaController extends Controller
      */
     public function update(Request $request, Siswa $siswa)
     {
-        //
+         Request()->validate([
+            'nama_lengkap'=>'required|string',
+            'nisn'=>'required|numeric',
+            'jk'=>'required',
+            'id_kelas'=>'required',
+        ]);
+        $siswa->update(Request()->except(['_token','_method']));
+        return redirect('/admin/siswa')->with('pesan','Siswa berhasil di ubah');
     }
 
     /**

@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label>Kode Jurusan</label>
-                            <input name="kode_jurusan" type="number"
+                            <input name="kode_jurusan" type="text"
                                 value="{{ old('kode_jurusan', $jurusan->kode_jurusan) }}" placeholder="Kode Jurusan"
                                 class="form-control">
                             @error('kode_jurusan')

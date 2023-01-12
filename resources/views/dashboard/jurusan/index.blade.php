@@ -16,7 +16,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Jurusan</h4>
+                        <a href="/admin/jurusan" class="btn btn-success m-3"> Tambah Jurusan</a>
+
                     </div>
                     <div class="card-body">
 <<<<<<< HEAD
@@ -44,8 +45,7 @@
                       </table>
 =======
                         <div class="table-responsive">
-                            <a href="/admin/jurusan/create"><button class="btn btn-primary m-3" type="submit">Tambah
-                                    Data</button></a>
+
                             <table class="table table-bordered table-md">
                                 <tr>
                                     <th>No</th>
