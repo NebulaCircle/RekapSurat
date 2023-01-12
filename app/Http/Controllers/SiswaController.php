@@ -40,7 +40,7 @@ class SiswaController extends Controller
     {
         Request()->validate([
             'nama_lengkap'=>'required|string',
-            'nisn'=>'required|numeric',
+            'nisn'=>'required|numeric|min:10|max:10',
             'jk'=>'required',
             'id_kelas'=>'required',
         ]);

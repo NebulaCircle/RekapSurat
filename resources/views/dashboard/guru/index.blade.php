@@ -28,7 +28,6 @@
                           <th>Nip</th>
                           <th>Nama</th>
                           <th>Jenis Kelamin</th>
-                          <th>Tipe</th>
                           <th>Action</th>
                         </tr>
                         @foreach ($guru as $g)
@@ -37,7 +36,6 @@
                           <td>{{ $g->nip }}</td>
                           <td>{{ $g->nama_lengkap }}</td>
                           <td>{{ $g->jk == "l" ? 'laki-laki' : 'perempuan' }}</td>
-                          <td><div class="badge badge-success">{{ $g->tipe }}</div></td>
                           <td>
                             <a href="/admin/guru/{{ $g->id }}/edit" class="btn btn-success">Edit</a>
                             <form class="d-inline" action="/admin/guru/{{ $g->id }}" method="post">

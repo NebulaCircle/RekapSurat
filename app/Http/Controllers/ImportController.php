@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\guruImports;
+use App\Imports\jurusanImports;
+use App\Imports\kelasImports;
 use App\Imports\siswaImports;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -22,18 +25,57 @@ class ImportController extends Controller
 
         Excel::import(new siswaImports, public_path('Excel/'.$nama_file));
         alert()->success('Peserta berhasil di import', 'Berhasil');
-        return redirect('peserta');
+        return redirect('/admin/siswa');
    }
-   public function jurusanImport()
+   public function jurusanImport(Request $request)
    {
-    # code...
+     request()->validate([
+            'file' => 'required|mimes:xls,xlsx',
+        ],[
+            'file.required' => 'Harap di isi',
+            'file.mimes' => 'Tidak support',
+        ]);
+
+        $file = $request->file('file');
+        $nama_file =Rand(1,30).$file->getClientOriginalName();
+        $file->move(public_path('Excel'),$nama_file);
+
+        Excel::import(new jurusanImports, public_path('Excel/'.$nama_file));
+        alert()->success('Peserta berhasil di import', 'Berhasil');
+        return redirect('/admin/jurusan');
    }
-   public function guruImport()
+   public function guruImport(Request $request)
    {
-    # code...
+     request()->validate([
+            'file' => 'required|mimes:xls,xlsx',
+        ],[
+            'file.required' => 'Harap di isi',
+            'file.mimes' => 'Tidak support',
+        ]);
+
+        $file = $request->file('file');
+        $nama_file =Rand(1,30).$file->getClientOriginalName();
+        $file->move(public_path('Excel'),$nama_file);
+
+        Excel::import(new guruImports, public_path('Excel/'.$nama_file));
+        alert()->success('Peserta berhasil di import', 'Berhasil');
+        return redirect('/admin/guru');
    }
-     public function kelasImport()
+     public function kelasImport(Request $request)
    {
-    # code...
+     request()->validate([
+            'file' => 'required|mimes:xls,xlsx',
+        ],[
+            'file.required' => 'Harap di isi',
+            'file.mimes' => 'Tidak support',
+        ]);
+
+        $file = $request->file('file');
+        $nama_file =Rand(1,30).$file->getClientOriginalName();
+        $file->move(public_path('Excel'),$nama_file);
+
+        Excel::import(new kelasImports, public_path('Excel/'.$nama_file));
+        alert()->success('Peserta berhasil di import', 'Berhasil');
+        return redirect('/admin/kelas');
    }
 }
