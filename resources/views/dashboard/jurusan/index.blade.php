@@ -20,6 +20,30 @@
 
                     </div>
                     <div class="card-body">
+<<<<<<< HEAD
+                    <div class="table-responsive">
+                      <a href="/admin/jurusan"><button class="btn btn-primary m-3" type="submit">Tambah Data</button></a>
+                      <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModalCenter">
+                        Import
+                      </button>
+                      <table class="table table-bordered table-md">
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Jurusan</th>
+                          <th>Kode Jurusan</th>
+                          <th>Action</th>
+                        </tr>
+                        {{-- @foreach ($jurusan as $view)
+                        <tr>
+                          <td>{{ $view-> }}</td>
+                          <td>{{ $view-> }}</td>
+                          <td>{{ $view-> }}</td>
+                          <td><div class="badge badge-success">{{ $view->tipe }}</div></td>
+                          <td><a href="#" class="btn btn-secondary">Hapus</a></td>
+                        </tr>
+                        @endforeach --}}
+                      </table>
+=======
                         <div class="table-responsive">
 
                             <table class="table table-bordered table-md">
@@ -47,9 +71,39 @@
                                 @endforeach
                             </table>
                         </div>
+>>>>>>> f34cb7c4468103b7f24f072cace9f502d0d4dd18
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+        </section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Unggah file di sini</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/import/jurusan" method="POST" enctype="multipart/form-data">
+          <input type="file" class="form-control">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+=======
         </div>
     </section>
+>>>>>>> f34cb7c4468103b7f24f072cace9f502d0d4dd18
 @endsection
