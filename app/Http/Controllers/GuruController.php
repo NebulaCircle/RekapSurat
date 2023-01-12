@@ -15,7 +15,7 @@ class GuruController extends Controller
      */
     public function index()
     {
-        return view('dashboard.guru.index');
+        return view('dashboard.guru.index', compact('guru'));
     }
 
     /**
@@ -44,6 +44,7 @@ class GuruController extends Controller
         ]);
 
         Guru::create($request->except('_token'));
+        return redirect('/admin/guru');
     }
 
     /**
@@ -65,7 +66,7 @@ class GuruController extends Controller
      */
     public function edit(Guru $guru)
     {
-        //
+        return view('dashboard.guru.edit');
     }
 
     /**
@@ -77,7 +78,15 @@ class GuruController extends Controller
      */
     public function update(Request $request, Guru $guru)
     {
-        //
+        $request->validate([
+            'nip' => 'required',
+            'nama_lengkap' => 'required',
+            'jk' => 'required',
+            'tipe' => 'required'
+        ]);
+
+        $guru->update($request->except('_token'));
+        return redirect('/admin/guru');
     }
 
     /**
@@ -88,6 +97,7 @@ class GuruController extends Controller
      */
     public function destroy(Guru $guru)
     {
-        //
+        $guru->delete();
+        return redirect('/admin/guru');
     }
 }
