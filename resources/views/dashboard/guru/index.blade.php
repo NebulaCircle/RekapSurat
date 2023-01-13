@@ -67,13 +67,14 @@
       </div>
       <div class="modal-body">
         <form action="/import/guru" method="POST" enctype="multipart/form-data">
-          <input type="file" class="form-control">
-        </form>
+          @csrf
+          <input type="file" class="form-control" required>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+        <button type="submit" class="btn btn-primary">Import</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
