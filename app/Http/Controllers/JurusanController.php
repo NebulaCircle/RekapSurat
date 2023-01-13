@@ -14,7 +14,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $jurusan = Jurusan::all();
+        $jurusan = Jurusan::paginate(10);
         return view('dashboard.jurusan.index', compact('jurusan'));
     }
 
@@ -36,6 +36,7 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'nama_jurusan' => 'required',
             'kode_jurusan' => 'required',

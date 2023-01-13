@@ -14,7 +14,8 @@ class RekapController extends Controller
      */
     public function index()
     {
-        //
+        $rekap = Rekap::paginate(10);
+        return view('dashboard.rekap.index',compact('rekap'));
     }
 
     /**

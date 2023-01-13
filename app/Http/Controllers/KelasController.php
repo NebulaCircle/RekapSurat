@@ -16,7 +16,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::with('jurusan')->paginate(1);
+        $kelas = Kelas::with('jurusan')->paginate(10);
         return view('dashboard.kelas.index',compact('kelas'));
     }
 

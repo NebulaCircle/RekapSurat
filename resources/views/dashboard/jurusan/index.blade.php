@@ -4,11 +4,10 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Table</h1>
+            <h1>Jurusan</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Components</a></div>
-                <div class="breadcrumb-item">Table</div>
+                <div class="breadcrumb-item"><a href="#">Jurusan</a></div>
             </div>
         </div>
 
@@ -35,7 +34,7 @@
                                 </tr>
                                 @foreach ($jurusan as $j)
                                     <tr>
-                                        <td>{{ $j->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $j->nama_jurusan }}</td>
                                         <td>{{ $j->kode_jurusan }}</td>
                                         <td><a href="/admin/jurusan/{{ $j->id }}/edit"
@@ -50,7 +49,11 @@
                                     </tr>
                                 @endforeach
                             </table>
+
                         </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        {{ $jurusan->links() }}
                     </div>
                 </div>
             </div>
@@ -69,15 +72,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form action="/import/jurusan" method="POST" enctype="multipart/form-data">
-                        <input type="file" class="form-control">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form action="/import/jurusan" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="file" name="file" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
