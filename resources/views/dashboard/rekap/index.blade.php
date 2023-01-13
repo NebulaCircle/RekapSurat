@@ -12,7 +12,7 @@
                     <tr>
                         <th>No</th>
                         <th>Siswa</th>
-                        <th>Bk</th>
+                        <th>Bimbingan Konseling</th>
                         <th>Wali Kelas</th>
                         <th>Tahun Ajaran</th>
                         <th>Keterangan</th>
