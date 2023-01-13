@@ -75,13 +75,13 @@
       </div>
       <div class="modal-body">
         <form action="/import/kelas" method="POST" enctype="multipart/form-data">
-          <input type="file" class="form-control">
-        </form>
+          <input type="file" name="file" class="form-control">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Import</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
