@@ -48,6 +48,7 @@ class KelasController extends Controller
             'id_ajaran'=>'required'
         ]);
         Kelas::create(Request()->except('_token'));
+        alert()->success('Kelas berhasil di tambahkan', 'Berhasil');
 
         return redirect("/admin/kelas")->with('pesan','kelas berhasil di tambahkan');
     }
@@ -92,6 +93,7 @@ class KelasController extends Controller
         ]);
         
         Kelas::where('id',$id)->update(Request()->except(['_token',"_method"]));
+        alert()->success('Kelas berhasil di ubah', 'Berhasil');
         
         return redirect("/admin/kelas")->with('pesan','kelas berhasil di edit');
     }
@@ -102,9 +104,10 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy($id)
     {
-        $kelas->delete();
+       
+        Kelas::find($id)->delete();
         return redirect("/admin/kelas")->with('pesan','kelas berhasil di hapus');
     }
 }
