@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Rekap;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class RekapController extends Controller
@@ -25,7 +27,10 @@ class RekapController extends Controller
      */
     public function create()
     {
-        //
+        $siswa = Siswa::all();
+        $guru = Guru::all();
+
+        return view('dashboard.rekap.create',compact('siswa','guru'));
     }
 
     /**
@@ -36,7 +41,17 @@ class RekapController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Request()->validate([
+            'id_siswa'=>'required',
+            'status'=>'required',
+            'foto_surat'=>'required',
+            'id_walikelas'=>'required',
+            'id_bk'=>'required'
+        ]);
+        Rekap::create(Request()->except('_token'));
+        alert()->success('Kelas berhasil di tambahkan', 'Berhasil');
+
+        return redirect("/admin/kelas")->with('pesan','kelas berhasil di tambahkan');
     }
 
     /**
@@ -58,7 +73,10 @@ class RekapController extends Controller
      */
     public function edit(Rekap $rekap)
     {
-        //
+        $rekap = Rekap::all();
+        $siswa = Siswa::all();
+        $guru = Guru::all();
+       return view('dashboard.reap$rekap.edit',compact('siswa','guru','rekap'));
     }
 
     /**
@@ -68,9 +86,20 @@ class RekapController extends Controller
      * @param  \App\Models\Rekap  $rekap
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rekap $rekap)
+    public function update(Request $request, $id)
     {
-        //
+        Request()->validate([
+            'id_siswa'=>'required',
+            'status'=>'required',
+            'foto_surat'=>'required',
+            'id_walikelas'=>'required',
+            'id_bk'=>'required'
+        ]);
+        
+        Rekap::where('id',$id)->update(Request()->except(['_token',"_method"]));
+        alert()->success('Kelas berhasil di ubah', 'Berhasil');
+        
+        return redirect("/admin/kelas")->with('pesan','kelas berhasil di edit');
     }
 
     /**
@@ -81,6 +110,7 @@ class RekapController extends Controller
      */
     public function destroy(Rekap $rekap)
     {
-        //
+        $rekap->delete();
+        return redirect('/admin/rekap');
     }
 }
