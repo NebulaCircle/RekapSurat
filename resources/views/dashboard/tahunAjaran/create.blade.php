@@ -12,18 +12,12 @@
                 <div class="row">
                     <div class="mb-3 col-lg-4">
                         <label class="w-100">Tahun Ajaran Awal</label>
-                        <input type="text" class="form-control" name="tahun_ajaran_awal" id="">
-                        @error('tahun_ajaran_awal')
+                        <input type="text" class="form-control" name="tahun_ajaran" id="">
+                        @error('tahun_ajaran')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="mb-3 col-lg-4">
-                        <label class="w-100">Tahun Ajaran Akhir</label>
-                        <input type="text" class="form-control" name="tahun_ajaran_akhir" id="">
-                        @error('tahun_ajaran_akhir')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+
                     <div class="mb-3 col-lg-4">
                         <label class="w-100">Semester</label>
                         <select name="semester" class="form-control" id="">

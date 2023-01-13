@@ -15,7 +15,9 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswa = Siswa::all();
+        $siswa = Siswa::with(['kelas'=>function($e){
+            $e->with('jurusan');
+        }])->paginate(10);
         return view("dashboard.siswa.index",compact('siswa'));
     }
 

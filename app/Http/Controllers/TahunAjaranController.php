@@ -38,8 +38,7 @@ class TahunAjaranController extends Controller
     {
         Request()->validate([
             'semester'=>'required',
-            'tahun_ajaran_awal'=>'required',
-            'tahun_ajaran_akhir'=>'required',
+            'tahun_ajaran'=>'required',
         ]);
 
         TahunAjaran::create(Request()->except('_token'));
@@ -79,8 +78,7 @@ class TahunAjaranController extends Controller
     {
            Request()->validate([
             'semester'=>'required',
-            'tahun_ajaran_awal'=>'required',
-            'tahun_ajaran_akhir'=>'required',
+            'tahun_ajaran'=>'required',
         ]);
 
         $tahunAjaran->update(Request()->except(['_token','_method']));

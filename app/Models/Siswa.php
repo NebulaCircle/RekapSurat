@@ -10,6 +10,8 @@ class Siswa extends Model
     use HasFactory;
     protected $table = "siswa";
     protected $hidden = ['id_kelas'];
+    protected $fillable = ['nama_lengkap','nisn','jk','id_kelas'];
+    public $timestamps = false;
 
 
       public function kelas()
