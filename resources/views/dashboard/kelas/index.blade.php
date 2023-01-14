@@ -69,4 +69,10 @@
                     </div>
                 </form>
             </div>
+<<<<<<< HEAD
         @endsection
+=======
+        </div>
+    </div>
+@endsection
+>>>>>>> 606b90960acc972515073afcf687e5a08c467fd7

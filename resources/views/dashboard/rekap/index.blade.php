@@ -4,7 +4,11 @@
 @section('content')
     <div class="card">
         <div class="card-header">
+<<<<<<< HEAD
             <a href="/admin/rekap/create" class="btn btn-success">Tambah Tahun Ajaran</a>
+=======
+            <a href="/admin/rekap/create" class="btn btn-success">Tambah Data</a>
+>>>>>>> 606b90960acc972515073afcf687e5a08c467fd7
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -12,7 +16,7 @@
                     <tr>
                         <th>No</th>
                         <th>Siswa</th>
-                        <th>Bk</th>
+                        <th>Bimbingan Konseling</th>
                         <th>Wali Kelas</th>
                         <th>Tahun Ajaran</th>
                         <th>Keterangan</th>
