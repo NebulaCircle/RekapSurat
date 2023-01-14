@@ -14,7 +14,7 @@ class TahunAjaranController extends Controller
      */
     public function index()
     {
-        $tahunAjaran = TahunAjaran::all();
+        $tahunAjaran = TahunAjaran::paginate(10);
         return view('dashboard.tahunAjaran.index',compact('tahunAjaran'));
     }
 
@@ -42,6 +42,8 @@ class TahunAjaranController extends Controller
         ]);
 
         TahunAjaran::create(Request()->except('_token'));
+        alert()->success('SIswa berhasil di Tambahkan');
+
         return redirect('/admin/tahun_ajaran')->with('pesan','Tahun ajaran berhasil di tambahkan');
     }
 
@@ -80,8 +82,9 @@ class TahunAjaranController extends Controller
             'semester'=>'required',
             'tahun_ajaran'=>'required',
         ]);
-
         $tahunAjaran->update(Request()->except(['_token','_method']));
+        alert()->success('Tahun ajaran berhasil di ubah');
+
         return redirect('/admin/tahun_ajaran')->with('pesan','Tahun ajaran berhasil di ubah');
     }
 

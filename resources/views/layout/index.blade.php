@@ -20,7 +20,7 @@
 </head>
 
 <body class="antialiased">
-@include('sweetalert::alert')
+    @include('sweetalert::alert')
 
 
     <div id="app">
@@ -54,8 +54,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{ asset('template') }}/assets/js/stisla.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.min.js"
+        integrity="sha512-fYE9wAJg2PYbpJPxyGcuzDSiMuWJiw58rKa9MWQICkAqEO+xeJ5hg5qPihF8kqa7tbgJxsmgY0Yp51+IMrSEVg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 
     <!-- JS Libraies -->
+    <script src="{{ asset('chart') }}/dist/Chart.min.js"></script>
+    <script src="{{ asset('chart') }}/dist/Chart.extension.js"></script>
     <script src="{{ asset('bootstrap') }}/js/bootstrap.min.js"></script>
     <!-- Template JS File -->
     <script src="{{ asset('template') }}/assets/js/scripts.js"></script>

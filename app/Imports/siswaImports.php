@@ -19,11 +19,15 @@ class siswaImports implements ToModel,WithHeadingRow
         $idKelas = Kelas::where('kelas',$row['kelas'])->where('no_kelas',$row['no_kelas'])->with(['jurusan'=>function($e) use($row){
             $e->where('nama_jurusan',$row['jurusan']);
         }])->first('id');
-
+        if(!$idKelas){
+            echo "salah";   
+            return ;
+        }
         return new Siswa([
-            'nama_lengkap' => $row['nama_lengkap'],
+            'nama_lengkap' => $row['nama'],
             'nisn' => $row['nisn'],
-            'jk' => $row['jk'],
+            'jk' => $row['gender'],
+            'id_kelas'=>$idKelas->id
         ]);
     }
 }

@@ -4,7 +4,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="/admin/tahun_ajaran/create" class="btn btn-success">Tambah Tahun Ajaran</a>
+            <a href="/admin/rekap/create" class="btn btn-success">Tambah Tahun Ajaran</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

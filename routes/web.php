@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/guru', GuruController::class);
     Route::resource('/rekap', RekapController::class);
     Route::resource('/tahun_ajaran', TahunAjaranController::class);
+    Route::resource('/laporan', LaporanController::class);
+
    });
 
     Route::resource('/dashboard', DashboardController::class);

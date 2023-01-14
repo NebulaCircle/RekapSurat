@@ -10,5 +10,5 @@ class TahunAjaran extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = 'tahun_ajaran';
-    protected $fillable = ['tahun_ajaran_awal','tahun_ajaran_akhir','semester'];
+    protected $fillable = ['tahun_ajaran','semester'];
 }

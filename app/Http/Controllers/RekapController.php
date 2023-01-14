@@ -25,7 +25,7 @@ class RekapController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.rekap.create',compact('tahunAjaran','guru'));
     }
 
     /**

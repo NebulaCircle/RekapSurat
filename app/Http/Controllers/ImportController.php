@@ -24,7 +24,7 @@ class ImportController extends Controller
         $file->move(public_path('Excel'),$nama_file);
 
         Excel::import(new siswaImports, public_path('Excel/'.$nama_file));
-        alert()->success('Peserta berhasil di import', 'Berhasil');
+        alert()->success('Siswa berhasil di import');
         return redirect('/admin/siswa');
    }
    public function jurusanImport(Request $request)
@@ -41,7 +41,7 @@ class ImportController extends Controller
         $file->move(public_path('Excel'),$nama_file);
 
         Excel::import(new jurusanImports, public_path('Excel/'.$nama_file));
-        alert()->success('Peserta berhasil di import', 'Berhasil');
+        alert()->success('Jurusan berhasil di import');
         return redirect('/admin/jurusan');
    }
    public function guruImport(Request $request)
@@ -58,7 +58,7 @@ class ImportController extends Controller
         $file->move(public_path('Excel'),$nama_file);
 
         Excel::import(new guruImports, public_path('Excel/'.$nama_file));
-        alert()->success('Peserta berhasil di import', 'Berhasil');
+        alert()->success('Guru berhasil di import');
         return redirect('/admin/guru');
    }
      public function kelasImport(Request $request)
@@ -75,7 +75,7 @@ class ImportController extends Controller
         $file->move(public_path('Excel'),$nama_file);
 
         Excel::import(new kelasImports, public_path('Excel/'.$nama_file));
-        alert()->success('Peserta berhasil di import', 'Berhasil');
+        alert()->success('Kelas berhasil di import');
         return redirect('/admin/kelas');
    }
 }

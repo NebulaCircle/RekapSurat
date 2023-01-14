@@ -47,6 +47,8 @@ class SiswaController extends Controller
             'id_kelas'=>'required',
         ]);
         Siswa::create(Request()->except('_token'));
+        alert()->success('SIswa berhasil di Tambahkan');
+
         return redirect('/admin/siswa')->with('pesan','Siswa berhasil di tambahkan');
     }
 
@@ -89,6 +91,8 @@ class SiswaController extends Controller
             'id_kelas'=>'required',
         ]);
         $siswa->update(Request()->except(['_token','_method']));
+        alert()->success('SIswa berhasil di ubah');
+
         return redirect('/admin/siswa')->with('pesan','Siswa berhasil di ubah');
     }
 

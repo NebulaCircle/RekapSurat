@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="mb-3 col-lg-4">
                         <label class="w-100">Tahun Ajaran Awal</label>
-                        <input type="text" class="form-control" name="tahun_ajaran" id="">
+                        <input type="text" class="form-control tapel" name="tahun_ajaran" id="">
                         @error('tahun_ajaran')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -34,4 +34,11 @@
             </form>
         </div>
     </div>
+    <script src="https://cdn.rawgit.com/igorescobar/jQuery-Mask-Plugin/1ef022ab/dist/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Format tahun pelajaran.
+            $('.tapel').mask('0000/0000');
+        })
+    </script>
 @endsection

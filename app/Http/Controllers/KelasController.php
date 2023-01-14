@@ -48,7 +48,7 @@ class KelasController extends Controller
             'id_ajaran'=>'required'
         ]);
         Kelas::create(Request()->except('_token'));
-        alert()->success('Kelas berhasil di tambahkan', 'Berhasil');
+        alert()->success('Kelas berhasil di tambahkan');
 
         return redirect("/admin/kelas")->with('pesan','kelas berhasil di tambahkan');
     }
@@ -74,7 +74,9 @@ class KelasController extends Controller
     {
         $kelas = Kelas::find($id);
         $jurusan = Jurusan::all();
-       return view('dashboard.kelas.edit',compact('kelas','jurusan'));
+        $tahunAjaran = TahunAjaran::all();
+
+       return view('dashboard.kelas.edit',compact('kelas','jurusan','tahunAjaran'));
     }
 
     /**
@@ -93,7 +95,7 @@ class KelasController extends Controller
         ]);
         
         Kelas::where('id',$id)->update(Request()->except(['_token',"_method"]));
-        alert()->success('Kelas berhasil di ubah', 'Berhasil');
+        alert()->success('Kelas berhasil di ubah');
         
         return redirect("/admin/kelas")->with('pesan','kelas berhasil di edit');
     }

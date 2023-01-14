@@ -41,7 +41,7 @@
                         <label class="w-100">Jurusan</label>
                         <select name="id_jurusan" class="form-control" id="">
                             <option disabled value="">Pilih Jurusan</option>
-                            <option selected value="{{ $kelas->id_jurusan }}">{{ $kelas->jurusan->nama_jurusan }}</option>
+                            <option selected value="{{ $kelas->id }}">{{ $kelas->jurusan->nama_jurusan }}</option>
                             @foreach ($jurusan as $j)
                                 <option value="{{ $j->id }}">{{ $j->nama_jurusan }}</option>
                             @endforeach
@@ -55,11 +55,11 @@
                     <label class="w-100">Tahun Ajaran</label>
                     <select name="id_ajaran" class="form-control" id="">
                         <option value="">Pilih Tahun Ajaran</option>
-                        <option selected value="{{ $tahunAjaran->id_ajaran }}">{{ $tahunAjaran->tahun_ajaran_awal }}/
-                            {{ $tahunAjaran->tahun_ajaran_akhir }} {{ $tahunAjaran->semester }}</option>
+                        @dd($kelas->tahunAjaran)
+                        {{-- <option selected value="{{ $kelas->tahunAjaran->id }}">{{ $kelas->tahunAjaran->tahun_ajaran }}/
+                            {{ $kelas->tahunAjaran->semester }}</option> --}}
                         @foreach ($tahunAjaran as $ta)
-                            <option value="{{ $ta->id }}">{{ $ta->tahun_ajaran_awal }}/
-                                {{ $ta->tahun_ajaran_akhir }} {{ $ta->semester }}</option>
+                            <option value="{{ $ta->id }}">{{ $ta->tahun_ajaran_awal }} {{ $ta->semester }}</option>
                         @endforeach
                     </select>
                     @error('id_ajaran')
