@@ -15,7 +15,7 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $guru  = Guru::paginate(10);
+        $guru  = Guru::paginate(20);
         return view('dashboard.guru.index', compact('guru'));
     }
 
@@ -84,10 +84,9 @@ class GuruController extends Controller
             'nip' => 'required|min:18|max:18',
             'nama_lengkap' => 'required',
             'jk' => 'required',
-            'tipe' => 'required'
         ]);
 
-        $guru->update($request->except('_token'));
+        $guru->update($request->except('_token','_method'));
         alert()->success('Guru berhasil Di Edit');
         return redirect('/admin/guru')->with('pesan','guru berhasil di tambah');
     }

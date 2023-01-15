@@ -53,8 +53,17 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="Username">Username</label>
-                                        <input id="Username" type="text" class="form-control" name="username"
-                                            tabindex="1" required autofocus>
+                                        <div class="input-group">
+                                            <input id="Username" type="text" class="form-control" name="username"
+                                                tabindex="1" required autofocus>
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text cursor-pointer"
+                                                        style="cursor: pointer" id="basic-addon1"><i
+                                                            class="fa fa-user"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="invalid-feedback">
                                             Please fill in your username
                                         </div>
@@ -74,8 +83,18 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <input id="password" type="password" class="form-control" name="password"
-                                            tabindex="2" required>
+
+                                        <div class="input-group">
+                                            <input id="password" type="password" class="form-control" name="password"
+                                                tabindex="2" required>
+                                            <div onclick="showHidePass(this)" class="input-group-prepend">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text cursor-pointer"
+                                                        style="cursor: pointer" id="basic-addon1"><i
+                                                            class="fa fa-eye"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="invalid-feedback">
                                             please fill in your password
                                         </div>
@@ -114,6 +133,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{ asset('template') }}/assets/js/stisla.js"></script>
+
+    <script>
+        function showHidePass(el) {
+            let icon = el.querySelector('i')
+            if (icon.classList.contains('fa-eye')) {
+                $('input[name=password]').attr('type', 'text').focus()
+                let icon = el.querySelector('i').classList.replace('fa-eye', 'fa-eye-slash')
+            } else {
+                $('input[name=password]').attr('type', 'password').focus()
+
+                let icon = el.querySelector('i').classList.replace('fa-eye-slash', 'fa-eye')
+
+            }
+        }
+    </script>
 
     <!-- JS Libraies -->
     <script src="{{ asset('bootstrap') }}/js/bootstrap.min.js"></script>

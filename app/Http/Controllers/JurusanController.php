@@ -14,8 +14,12 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $jurusan = Jurusan::paginate(10);
-        return view('dashboard.jurusan.index', compact('jurusan'));
+        $q = Request()->q;
+        $jurusan = Jurusan::paginate(20);
+        if ($q) {
+        $jurusan = Jurusan::where('nama_jurusan','like','%'.$q)->orWhere('kode_jurusan','like','%'.$q.'%')->paginate(20);
+        }
+        return view('dashboard.jurusan.index', compact('jurusan','q'));
     }
 
     /**

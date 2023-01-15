@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('icons') }}/css/all.min.css">
 
+    <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css') }}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/components.css">
@@ -46,6 +47,9 @@
     </div>
 
 
+
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -60,7 +64,11 @@
 
 
 
+
+
+
     <!-- JS Libraies -->
+    <script src="{{ asset('select2') }}/dist/js/select2.min.js"></script>
     <script src="{{ asset('chart') }}/dist/Chart.min.js"></script>
     <script src="{{ asset('chart') }}/dist/Chart.extension.js"></script>
     <script src="{{ asset('bootstrap') }}/js/bootstrap.min.js"></script>
@@ -70,7 +78,11 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('template') }}/assets/js/page/index.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('.form-autocompelet').select2();
+        });
+    </script>
 </body>
 
 </html>

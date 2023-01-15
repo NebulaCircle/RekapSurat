@@ -58,10 +58,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/import/kelas',[ImportController::class,'kelasImport']);
     Route::post('/import/guru',[ImportController::class,'guruImport']);
 
-    // route export data
+    // route export data View
     Route::get('/export/guru',[ExportController::class,'guruExport']);
     Route::get('/export/siswa',[ExportController::class,'siswaExport']);
     Route::get('/export/jurusan',[ExportController::class,'jurusanExport']);
     Route::get('/export/kelas',[ExportController::class,'kelasExport']);
-    Route::get('/export/rekap',[ExportController::class,'rekapExport']);
+    Route::get('/export/rekap',[ExportController::class,'rekapView']);
+
+    // route export data download
+    Route::post('/export/guru/post',[ExportController::class,'guruExport']);
+    Route::post('/export/siswa/post',[ExportController::class,'siswaExport']);
+    Route::post('/export/jurusan/post',[ExportController::class,'jurusanExport']);
+    Route::post('/export/kelas/post',[ExportController::class,'kelasExport']);
+    Route::post('/export/rekap/post',[ExportController::class,'rekapExport']);
+
+
 });

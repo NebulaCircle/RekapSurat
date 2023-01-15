@@ -2,51 +2,64 @@
 
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <a href="/admin/siswa/create" class="btn btn-success">Tambah Siswa</a>
-            <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModalCenter">
-                Import
-            </button>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-md">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Lengkap</th>
-                        <th>Nisn</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Kelas</th>
-                        <th>Action</th>
-                    </tr>
-                    @forelse ($siswa as $s)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $s->nama_lengkap }} </td>
-                            <td>{{ $s->nisn }}</td>
-                            <td>{{ $s->jk }}</td>
-                            <td>{{ $s->kelas->kelas }} {{ $s->kelas->jurusan->nama_jurusan }} {{ $s->kelas->no_kelas }}</td>
-                            <td><a href="/admin/tahun_ajaran/{{ $s->id }}/edit" class="btn btn-success">Edit</a>
-                                <form class="d-inline" action="/admin/tahun_ajaran/{{ $s->id }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                </form>
-                            </td>
-
-                        </tr>
-                    @empty
-                    @endforelse
-
-                </table>
+    <section class="section">
+        <div class="section-header">
+            <h1>Siswa</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="#">Siswa</a></div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                <a href="/admin/siswa/create" class="btn btn-success">Tambah Siswa</a>
+                <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModalCenter">
+                    Import
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-md">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Lengkap</th>
+                            <th>Nisn</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Kelas</th>
+                            <th>Action</th>
+                        </tr>
+                        @forelse ($siswa as $s)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $s->nama_lengkap }} </td>
+                                <td>{{ $s->nisn }}</td>
+                                <td>{{ $s->jk }}</td>
+                                <td>{{ $s->kelas->kelas }} {{ $s->kelas->jurusan->nama_jurusan }} {{ $s->kelas->no_kelas }}
+                                </td>
+                                <td><a href="/admin/tahun_ajaran/{{ $s->id }}/edit" class="btn btn-success">Edit</a>
+                                    <form id="delete" class="d-inline" action="/admin/tahun_ajaran/{{ $s->id }}"
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger"
+                                            data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
+                                            data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
+                                    </form>
+                                </td>
 
-        <div class="card-footer text-right">
-            {{ $siswa->links() }}
+                            </tr>
+                        @empty
+                        @endforelse
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-footer text-right">
+                {{ $siswa->links() }}
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

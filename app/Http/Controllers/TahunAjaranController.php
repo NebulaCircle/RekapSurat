@@ -14,7 +14,7 @@ class TahunAjaranController extends Controller
      */
     public function index()
     {
-        $tahunAjaran = TahunAjaran::paginate(10);
+        $tahunAjaran = TahunAjaran::paginate(20);
         return view('dashboard.tahunAjaran.index',compact('tahunAjaran'));
     }
 

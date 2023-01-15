@@ -2,45 +2,57 @@
 
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <a href="/admin/tahun_ajaran/create" class="btn btn-success">Tambah Tahun Ajaran</a>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-md">
-                    <tr>
-                        <th>No</th>
-                        <th>Tahun Ajaran</th>
-                        <th>Semester</th>
-                        <th>Action</th>
-                    </tr>
-                    @forelse ($tahunAjaran as $ta)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $ta->tahun_ajaran }}</td>
-                            <td>{{ $ta->semester }}</td>
-                            <td><a href="/admin/tahun_ajaran/{{ $ta->id }}/edit" class="btn btn-success">Edit</a>
-                                <form class="d-inline" action="/admin/tahun_ajaran/{{ $ta->id }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                </form>
-                            </td>
-
-                        </tr>
-                    @empty
-                    @endforelse
-
-                </table>
+    <section class="section">
+        <div class="section-header">
+            <h1>Tahun Ajaran</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="#">Tahun Ajaran</a></div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                <a href="/admin/tahun_ajaran/create" class="btn btn-success">Tambah Tahun Ajaran</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-md">
+                        <tr>
+                            <th>No</th>
+                            <th>Tahun Ajaran</th>
+                            <th>Semester</th>
+                            <th>Action</th>
+                        </tr>
+                        @forelse ($tahunAjaran as $ta)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $ta->tahun_ajaran }}</td>
+                                <td>{{ $ta->semester }}</td>
+                                <td><a href="/admin/tahun_ajaran/{{ $ta->id }}/edit" class="btn btn-success">Edit</a>
+                                    <form id="delete" class="d-inline" action="/admin/tahun_ajaran/{{ $ta->id }}"
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger"
+                                            data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
+                                            data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
+                                    </form>
+                                </td>
+
+                            </tr>
+                        @empty
+                        @endforelse
+
+                    </table>
+                </div>
+            </div>
 
 
-        <div class="card-footer text-right">
-            {{ $tahunAjaran->links() }}
+            <div class="card-footer text-right">
+                {{ $tahunAjaran->links() }}
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

@@ -14,14 +14,21 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <a href="/admin/jurusan/create" class="btn btn-success m-2"> Tambah Jurusan</a>
-                        <button type="button" class="btn btn-primary ml-1" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                            Import
-                        </button>
+                    <div class="card-header justify-content-between">
+                        <div class="group">
+                            <a href="/admin/jurusan/create" class="btn btn-success m-2"> Tambah Jurusan</a>
+                            <button type="button" class="btn btn-primary ml-1" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                                Import
+                            </button>
+                        </div>
+                        <form action="/admin/jurusan" method="get">
+                            <input type="text" value="{{ $q }}" name="q" placeholder="Cari..."
+                                class="form-control " autofocus id="">
+                        </form>
                     </div>
                     <div class="card-body">
+
                         <div class="table-responsive">
 
 
@@ -32,22 +39,28 @@
                                     <th>Kode Jurusan</th>
                                     <th>Action</th>
                                 </tr>
-                                @foreach ($jurusan as $j)
+                                @forelse ($jurusan as $j)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $j->nama_jurusan }}</td>
                                         <td>{{ $j->kode_jurusan }}</td>
                                         <td><a href="/admin/jurusan/{{ $j->id }}/edit"
                                                 class="btn btn-success">Edit</a>
-                                            <form class="d-inline" action="/admin/jurusan/{{ $j->id }}"
-                                                method="post">
+                                            <form id="delete" class="d-inline"
+                                                action="/admin/jurusan/{{ $j->id }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                <button class="btn btn-danger"
+                                                    data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
+                                                    data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                                    </tr>
+                                @endforelse
                             </table>
 
                         </div>
@@ -78,8 +91,8 @@
                         <input type="file" name="file" class="form-control">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
                     </div>
                 </form>
             </div>

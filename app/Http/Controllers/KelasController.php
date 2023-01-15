@@ -16,8 +16,13 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::with('jurusan')->paginate(10);
-        return view('dashboard.kelas.index',compact('kelas'));
+        $q = Request()->q;
+        $kelas = Kelas::with('jurusan')->paginate(20);
+
+        if ($q) {
+        $kelas = Kelas::where('kelas',$q)->with('jurusan')->paginate(20);;
+        }
+        return view('dashboard.kelas.index',compact('kelas','q'));
     }
 
     /**

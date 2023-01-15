@@ -13,14 +13,26 @@ class DashboardController extends Controller
     {
 
         $fil = Request()->fil;
+         $tahunAjaran = session()->get('tahun_ajaran');
+        if (Request()->tahun_ajaran) {
+            $tahunAjaran = Request()->tahun_ajaran;
+        }
         $siswa = Siswa::count();
         $kelas = Kelas::count();
         $jurusan = Jurusan::count();
-        $rekap = Rekap::count();
+        $rekap = Rekap::with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',$fil?$fil:date('m'))->count();
 
-        $sakit = Rekap::where('status','sakit')->whereMonth('tanggal',strtotime($fil?$fil:date('M')))->count();
-        $izin = Rekap::where('status','izin')->whereMonth('tanggal',strtotime($fil?$fil:date('M')))->count();
-        $alpa = Rekap::where('status','alpa')->whereMonth('tanggal',strtotime($fil?$fil:date('M')))->count();
+        $sakit = Rekap::with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->where('status','sakit')->whereMonth('tanggal',$fil?$fil:date('m'))->count();
+        $izin = Rekap::with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->where('status','izin')->whereMonth('tanggal',$fil?$fil:date('m'))->count();
+        $alpa = Rekap::with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->where('status','alpa')->whereMonth('tanggal',$fil?$fil:date('m'))->count();
 
         return view('dashboard.index',compact('siswa','kelas','jurusan','rekap','sakit','izin','alpa','fil'));
     }

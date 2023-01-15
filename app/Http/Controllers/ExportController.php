@@ -7,6 +7,9 @@ use App\Exports\jurusanExport;
 use App\Exports\kelasExport;
 use App\Exports\RekapExport;
 use App\Exports\siswaExport;
+
+use App\Models\Kelas;
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -35,6 +38,13 @@ class ExportController extends Controller
         public function rekapExport()
     {
         return Excel::download(new RekapExport, 'rekap.xlsx');
+    }
+
+        public function rekapView()
+    {
+        $kelas = Kelas::all();
+        $tahunAjaran = TahunAjaran::all();
+        return view('dashboard.export.Rekap',compact('kelas','tahunAjaran'));
     }
     
 }

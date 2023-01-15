@@ -2,58 +2,74 @@
 
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
-<<<<<<< HEAD
-            <a href="/admin/rekap/create" class="btn btn-success">Tambah Tahun Ajaran</a>
-=======
-            <a href="/admin/rekap/create" class="btn btn-success">Tambah Data</a>
->>>>>>> 606b90960acc972515073afcf687e5a08c467fd7
+    <section class="section">
+        <div class="section-header">
+            <h1>Rekap Surat</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="#">Rekap Surat</a></div>
+            </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-md">
-                    <tr>
-                        <th>No</th>
-                        <th>Siswa</th>
-                        <th>Bimbingan Konseling</th>
-                        <th>Wali Kelas</th>
-                        <th>Tahun Ajaran</th>
-                        <th>Keterangan</th>
-                        <th>Tanggal</th>
-                        <th>Action</th>
-                    </tr>
-                    @forelse ($rekap as $r)
+        <div class="card">
+            <div class="card-header">
+                <a href="/admin/rekap/create" class="btn mr-2 btn-success">Tambah Data</a>
+                <a href="/export/rekap" class="btn btn-primary">Export</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-md">
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $r->siswa->nama_lengkap }}</td>
-                            <td>{{ $r->bk->nama_lengkap }}</td>
-                            <td>{{ $r->walikelas->nama_lengkap }}</td>
-                            <td>{{ $r->tahunAjaran->tahun_ajaran }}</td>
-                            <td>{{ $r->status }}</td>
-                            <td>{{ date('d / m / Y', strtotime($r->tanggal)) }}</td>
-
-                            <td><a href="/admin/tahun_ajaran/{{ $r->id }}/edit" class="btn btn-success">Edit</a>
-                                <form class="d-inline" action="/admin/tahun_ajaran/{{ $r->id }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                </form>
-                            </td>
-
+                            <th>No</th>
+                            <th>Siswa</th>
+                            <th>Kelas</th>
+                            <th>Guru Bk</th>
+                            <th>Wali Kelas</th>
+                            <th>Tahun Ajaran</th>
+                            <th>Keterangan</th>
+                            <th>Tanggal</th>
+                            <th>Action</th>
                         </tr>
-                    @empty
-                    @endforelse
+                        @forelse ($rekap as $r)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $r->siswa->nama_lengkap }}</td>
+                                <td>{{ $r->siswa->kelas->kelas }} {{ $r->siswa->kelas->jurusan->kode_jurusan }}
+                                    {{ $r->siswa->kelas->no_kelas }}</td>
+                                <td>{{ $r->bk->nama_lengkap }}</td>
+                                <td>{{ $r->walikelas->nama_lengkap }}</td>
+                                <td>{{ $r->tahunAjaran->tahun_ajaran }} {{ $r->tahunAjaran->semester }}</td>
+                                <td>{{ $r->status }}</td>
+                                <td>{{ date('d / m / Y', strtotime($r->tanggal)) }}</td>
 
-                </table>
+                                <td><a href="/admin/rekap/{{ $r->id }}/edit" class="btn btn-success">Edit</a>
+                                    <form id="delete" class="d-inline" action="/admin/rekap/{{ $r->id }}"
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger"
+                                            data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
+                                            data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
+                                    </form>
+
+                                </td>
+
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="9" class="text-center">Tidak Ada Data</td>
+                            </tr>
+                        @endforelse
+
+                    </table>
+                </div>
+                <div class="card-footer text-right">
+                    {{ $rekap->links() }}
+                </div>
             </div>
-            <div class="card-footer text-right">
-                {{ $rekap->links() }}
-            </div>
+
+
         </div>
-
-
-    </div>
+    </section>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

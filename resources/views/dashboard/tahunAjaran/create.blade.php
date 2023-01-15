@@ -12,7 +12,8 @@
                 <div class="row">
                     <div class="mb-3 col-lg-4">
                         <label class="w-100">Tahun Ajaran Awal</label>
-                        <input type="text" class="form-control tapel" name="tahun_ajaran" id="">
+                        <input placeholder="0000 / 0000" type="text" class="form-control tapel" name="tahun_ajaran"
+                            id="">
                         @error('tahun_ajaran')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror

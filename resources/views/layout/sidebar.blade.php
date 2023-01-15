@@ -1,7 +1,8 @@
   <div class="main-sidebar">
       <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-              <a href="index.html">Stisla</a>
+              <a href="{{ auth()->user()->role == 'admin' ? '/admin/dashboard' : 'dashboard' }}"><span
+                      class="display-4">📨</span> Sirat</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
               <a href="index.html">St</a>
@@ -12,6 +13,25 @@
                   <a href="{{ auth()->user()->role == 'admin' ? '/admin/dashboard' : '/dashboard' }}"
                       class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
+              <li class="menu-header">Exports</li>
+              <li class="nav-item dropdown ">
+                  <a href="#" class="nav-link has-dropdown"><i
+                          class="fas fa-file-export"></i><span>Exports</span></a>
+                  <ul class="dropdown-menu">
+                      <li class="nav-item dropdown ">
+                          <a href="/export/siswa" class="nav-link "><span>Export Siswa</span></a>
+                      </li>
+                      <li class="nav-item dropdown ">
+                          <a href="/export/rekap" class="nav-link "><span>Export Rekap</span></a>
+                      </li>
+                      <li class="nav-item dropdown ">
+                          <a href="/export/rekap" class="nav-link "><span>Export Jurusan</span></a>
+                      </li>
+
+                  </ul>
+              </li>
+              <li class="menu-header">Admin</li>
+
               <li class="nav-item dropdown ">
                   <a href="/admin/rekap" class="nav-link "><i class="fas fa-list"></i><span>Rekap</span></a>
               </li>

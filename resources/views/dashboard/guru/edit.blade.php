@@ -16,16 +16,6 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Nip</label>
-                                        <input type="text" name="nip" class="form-control"
-                                            value="{{ $guru->nip }}" required="">
-                                        @error('nip')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
                                         <label>Nama</label>
                                         <input type="text" name="nama_lengkap" class="form-control"
                                             value="{{ $guru->nama_lengkap }}" required="">
@@ -34,6 +24,17 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Nip</label>
+                                        <input type="text" name="nip" class="form-control"
+                                            value="{{ $guru->nip }}" required="">
+                                        @error('nip')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-6">
@@ -49,18 +50,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label class="w-100">Tipe</label>
-                                        <input type="radio" name="tipe"
-                                            {{ $guru->tipe == 'walikelas' ? 'checked' : '' }} value="walikelas"> Wali Kelas
-                                        <input type="radio" name="tipe" class="ml-3"
-                                            {{ $guru->tipe == 'bk' ? 'checked' : '' }} value="bk"> Bimbingan Konseling
-                                        @error('tipe')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="card-footer">

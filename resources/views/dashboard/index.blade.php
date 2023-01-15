@@ -17,7 +17,6 @@
             '11' => 'November',
             '12' => 'Desember',
         ];
-        
     @endphp
     <section class="section">
         <div class="row">
@@ -77,10 +76,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Orders</h4>
+                            <h4>Total Data Rekap</h4>
                         </div>
                         <div class="card-body">
-                            59
+                            {{ $rekap }}
                         </div>
                     </div>
                 </div>
