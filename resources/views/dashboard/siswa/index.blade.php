@@ -30,7 +30,8 @@
                         </tr>
                         @forelse ($siswa as $s)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration + $siswa->perPage() * $siswa->currentPage() - $siswa->perPage() }}
+                                </td>
                                 <td>{{ $s->nama_lengkap }} </td>
                                 <td>{{ $s->nisn }}</td>
                                 <td>{{ $s->jk }}</td>

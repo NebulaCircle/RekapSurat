@@ -41,7 +41,8 @@
                                 </tr>
                                 @forelse ($jurusan as $j)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $loop->iteration + $jurusan->perPage() * $jurusan->currentPage() - $jurusan->perPage() }}
+
                                         <td>{{ $j->nama_jurusan }}</td>
                                         <td>{{ $j->kode_jurusan }}</td>
                                         <td><a href="/admin/jurusan/{{ $j->id }}/edit"

@@ -31,7 +31,8 @@
                         </tr>
                         @forelse ($rekap as $r)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration + $rekap->perPage() * $rekap->currentPage() - $rekap->perPage() }}
+
                                 <td>{{ $r->siswa->nama_lengkap }}</td>
                                 <td>{{ $r->siswa->kelas->kelas }} {{ $r->siswa->kelas->jurusan->kode_jurusan }}
                                     {{ $r->siswa->kelas->no_kelas }}</td>

@@ -36,7 +36,8 @@
 
                         @forelse ($kelas as $k)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration + $kelas->perPage() * $kelas->currentPage() - $kelas->perPage() }}
+
                                 <td>{{ $k->kelas }}</td>
                                 <td>{{ $k->no_kelas }}</td>
                                 <td>{{ $k->jurusan->nama_jurusan }}</td>

@@ -24,7 +24,8 @@
                          class="fas fa-search"></i></a></li>
          </ul>
          <div class="search-element">
-             <select onchange="this.form.submit()" name="tahun_ajaran" id="" class="form-control rounded-pill">
+             <select onchange="this.form.submit()" name="tahun_ajaran" id=""
+                 class="pr-5 form-control rounded-pill">
                  <option value="" disabled selected>Pilih Tahun Ajaran</option>
                  @foreach ($tahunAjaran as $ta)
                      <option {{ $thn == $ta->tahun_ajaran ? 'selected' : '' }} value="{{ $ta->tahun_ajaran }}">
@@ -32,6 +33,19 @@
                          {{ $ta->semester }}</option>
                  @endforeach
              </select>
+             {{-- <div class="dropdown d-inline">
+                 <a class="font-weight-600 bg-white form-control dropdown-toggle" data-toggle="dropdown" href="#"
+                     id="orders-month">{{ !$fil ? $montNum[date('m')] : $montNum[$fil] }}</a>
+                 <ul class="dropdown-menu dropdown-menu-sm">
+                     <li class="dropdown-title">Pilih Tahun Ajaran</li>
+                     @foreach ($tahunAjaran as $ta)
+                         <li><a href="?tahun_ajaran={{ $ta->tahun_ajaran }}"
+                                 class="dropdown-item {{ $thn == $ta->tahun_ajaran ? 'active' : '' }}">
+                                 {{ $ta->tahun_ajaran }}
+                                 {{ $ta->semester }}</a></li>
+                     @endforeach
+                 </ul>
+             </div> --}}
          </div>
      </form>
      <ul class="navbar-nav navbar-right">
