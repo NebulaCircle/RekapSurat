@@ -9,7 +9,10 @@ use App\Models\Siswa;
 
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths
+use Maatwebsite\Excel\Concerns\WithDrawings;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
+
+class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithDrawings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -40,6 +43,18 @@ class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths
         $bulan = $this->bulan;
 
         return view('dashboard.export.index',compact('rekap','siswa','bulan'));
+    }
+
+    public function drawings()
+    {
+        $drawing = new Drawing();
+        $drawing->setName('Logo');
+        $drawing->setDescription('This is my logo');
+        $drawing->setPath(public_path('/img/logo-smk.png'));
+        $drawing->setHeight(90);
+        $drawing->setCoordinates('C2');
+
+        return $drawing;
     }
 
 
