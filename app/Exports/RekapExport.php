@@ -46,6 +46,10 @@ class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithDrawin
         $siswa = Siswa::where('id_kelas',$this->kelas)->get();
         $bulan = $this->bulan;
 
+        if($this->tahun_ajaran){
+        return view('dashboard.export.rekap-persemester',compact('rekap','siswa','bulan'));
+            
+        }
         return view('dashboard.export.index',compact('rekap','siswa','bulan'));
     }
 
