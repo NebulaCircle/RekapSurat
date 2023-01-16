@@ -7,12 +7,18 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use App\Models\Siswa;
 
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+<<<<<<< HEAD
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithDrawings
+=======
+class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithStyles
+>>>>>>> ba81ee03565e70e8646d73a135a8e3df8c2254c1
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -45,6 +51,7 @@ class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithDrawin
         return view('dashboard.export.index',compact('rekap','siswa','bulan'));
     }
 
+<<<<<<< HEAD
     public function drawings()
     {
         $drawing = new Drawing();
@@ -57,6 +64,12 @@ class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithDrawin
         return $drawing;
     }
 
+=======
+    public function styles(Worksheet $sheet)
+    {
+        $sheet->getStyle('C3')->getAlignment()->setWrapText(true);
+    }
+>>>>>>> ba81ee03565e70e8646d73a135a8e3df8c2254c1
 
         public function columnWidths(): array
     {

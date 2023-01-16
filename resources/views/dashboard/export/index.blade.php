@@ -12,10 +12,6 @@
         width: 60%;
         margin: auto;
     }
-
-    th {
-        padding: 10px;
-    }
 </style>
 
 <body>
@@ -24,7 +20,7 @@
 
     <br><br>
     @php
-        $m = date('m');
+        $m = $bulan;
         $y = date('Y');
         $d = cal_days_in_month(1, $m, $y);
     @endphp
@@ -47,31 +43,62 @@
     @endphp
     <table border="1">
         <tr>
-            <th style="width: 20px;" rowspan="3">No</th>
-            <th style="min-width: 100px;" rowspan="3">Nama Siswa</th>
-            <th colspan="{{ $d }}" style="text-align: left;">Bulan {{ $montNum[$bulan] }}</th>
-            <th rowspan="2" colspan="3">Jumlah</th>
+            <th></th>
+            <th></th>
+            <th width="10" colspan="{{ $d }}" rowspan="3"
+                style="text-transform: uppercase;font-weight: bold;font-size: 20px;width: 100px;text-align: center;vertical-align: middle">
+                REKAPITULASI
+                KETERLAMBATAN DAN
+                ABSENSI PESERTA DIDIK SEMESTER
+                {{ $rekap[0]->tahunAjaran->semester == 'genap' ? 'GENAP' : 'GANJIL' }} TAHUN AJARAN
+                {{ $rekap[0]->tahunAjaran->tahun_ajaran }}</th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+            <th style="font-size:13px;width: 20px;text-align: center;vertical-align: middle;font-weight:bold;border: 5px solid black"
+                rowspan="3">No</th>
+            <th style="font-size:13px;min-width: 100px;text-align: center;vertical-align: middle;font-weight:bold;border: 5px solid black"
+                rowspan="3">Nama
+                Siswa</th>
+            <th colspan="{{ $d }}"
+                style="font-size:13px;text-align: left;font-weight:bold;border: 5px solid #0000">
+                Bulan {{ $montNum[$bulan] }} {{ date('Y', strtotime($rekap[0]->tanggal)) }}
+            </th>
+            <th rowspan="2" colspan="3"
+                style="font-size:13px;text-align: center;vertical-align: middle;font-weight:bold;border: 5px solid black">
+                Jumlah
+            </th>
         </tr>
         <tr>
-            <th colspan="{{ $d }}" style="text-align: left;">tanggal</th>
+            <th colspan="{{ $d }}"
+                style="font-size:13px;text-align: left;font-weight:bold;border: 5px solid black">Tanggal
+            </th>
         </tr>
         <tr>
 
             @for ($i = 1; $i <= $d; $i++)
-                <th style="width: 2px;">{{ $i }}</th>
+                <th style="font-size:13px;width: 2px;text-align:center;font-weight:bold;border: 5px solid black">
+                    {{ $i }}
+                </th>
             @endfor
-            <th style="width: 2px;">S</th>
-            <th style="width: 2px;">I</th>
-            <th style="width: 2px;">A</th>
+            <th style="font-size:13px;width: 2px;text-align: center;font-weight:bold;border: 5px solid black">S</th>
+            <th style="font-size:13px;width: 2px;text-align: center;font-weight:bold;border: 5px solid black">I</th>
+            <th style="font-size:13px;width: 2px;text-align: center;font-weight:bold;border: 5px solid black">A</th>
         </tr>
 
         @foreach ($siswa as $s)
             <tr>
-                <td>
+                <td style="text-align: center;border: 5px solid black">
                     <center>
                         {{ $loop->iteration }} </center>
                 </td>
-                <td style="min-width: 200px;max-width:250px;">{{ $s->nama_lengkap }}</td>
+                <td style="min-width: 200px;max-width:250px;border: 5px solid black">{{ $s->nama_lengkap }}</td>
 
                 @for ($i = 1; $i <= $d; $i++)
                     @php
@@ -80,7 +107,7 @@
                             $idSiswaArray[] = $r->id_siswa;
                         }
                     @endphp
-                    <td style="min-width: 200px;max-width:250px;">
+                    <td style="min-width: 200px;max-width:250px;text-align: center;border: 5px solid black">
                         <center>
                             @foreach ($rekap as $r)
                                 @if ($r->id_siswa == $s->id)
@@ -111,23 +138,77 @@
                         }
                     }
                 @endphp
-                <td>
+                <td style="vertical-align: middle;text-align:center;border: 5px solid black">
                     <center>
                         {{ $S }}
                     </center>
                 </td>
-                <td>
+                <td style="vertical-align: middle;text-align:center;border: 5px solid black">
                     <center>
                         {{ $I }}</center>
                 </td>
-                <td>
+                <td style="vertical-align: middle;text-align:center;border: 5px solid black">
                     <center>
                         {{ $A }}</center>
                 </td>
             </tr>
         @endforeach
-
-
+        <tr>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td colspan="7">Wali Kelas</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="7">Guru Bimbingan Konseling</td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td colspan="7" style="border-bottom:5px solid black;font-weight: bold">Abdul Wasid</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="7" style="border-bottom:5px solid black;font-weight: bold">Harakiri</td>
+        </tr>
     </table>
 </body>
 

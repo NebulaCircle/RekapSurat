@@ -33,7 +33,8 @@
                                 </tr>
                                 @foreach ($guru as $g)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $loop->iteration + $guru->perPage() * $guru->currentPage() - $guru->perPage() }}
+
                                         <td>{{ $g->nip }}</td>
                                         <td>{{ $g->nama_lengkap }}</td>
                                         <td>{{ $g->jk == 'l' ? 'laki-laki' : 'perempuan' }}</td>
