@@ -55,10 +55,12 @@
                         <label class="w-100">Keterangan</label>
                         <select name="status" class="form-control" id="">
                             <option value="" disabled>pilih keterangan</option>
-                            <option value="{{ $rekap->id }}" selected>{{ $rekap->status }}</option>
+                            <option value="{{ $rekap->status }}" selected>{{ $rekap->status }}</option>
                             <option value="izin">Izin</option>
                             <option value="sakit">Sakit</option>
                             <option value="alpa">Alpa</option>
+                            <option value="terlambat">Terlambat</option>
+
                         </select>
                         @error('status')
                             <small class="text-danger">{{ $message }}</small>

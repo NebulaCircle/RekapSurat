@@ -11,14 +11,10 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-<<<<<<< HEAD
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithDrawings
-=======
-class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithStyles
->>>>>>> ba81ee03565e70e8646d73a135a8e3df8c2254c1
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -33,6 +29,7 @@ class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithStyles
         $rekap = Rekap::with(['siswa'])->whereHas('siswa',function($e){
             $e->where('id_kelas',$this->kelas);
             $e->whereMonth('tanggal',$this->bulan);
+            
         })->get();
         if ($this->tahun_ajaran) {
              $rekap = Rekap::with(['siswa'])
@@ -45,31 +42,36 @@ class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithStyles
                     })
                     ->get();
         }
+
         $siswa = Siswa::where('id_kelas',$this->kelas)->get();
         $bulan = $this->bulan;
 
         return view('dashboard.export.index',compact('rekap','siswa','bulan'));
     }
 
-<<<<<<< HEAD
     public function drawings()
     {
         $drawing = new Drawing();
         $drawing->setName('Logo');
         $drawing->setDescription('This is my logo');
         $drawing->setPath(public_path('/img/logo-smk.png'));
-        $drawing->setHeight(90);
-        $drawing->setCoordinates('C2');
+        $drawing->setHeight(45);
+        $drawing->setCoordinates('S3');
+        
+        $drawing2 = new Drawing();
+        $drawing2->setName('Logo');
+        $drawing2->setDescription('This is my logo');
+        $drawing2->setPath(public_path('/img/jawaTimur-logo.png'));
+        $drawing2->setHeight(55);
+        $drawing2->setCoordinates('A3');
 
-        return $drawing;
+        return [$drawing,$drawing2];
     }
 
-=======
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('C3')->getAlignment()->setWrapText(true);
+        $sheet->getStyle('J10')->getAlignment()->setWrapText(true);
     }
->>>>>>> ba81ee03565e70e8646d73a135a8e3df8c2254c1
 
         public function columnWidths(): array
     {

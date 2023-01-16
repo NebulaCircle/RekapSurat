@@ -45,7 +45,9 @@
                                     <form class="d-inline" action="/admin/kelas/{{ $k->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                        <button class="btn btn-danger"
+                                            data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
+                                            data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
                                     </form>
                                 </td>
 

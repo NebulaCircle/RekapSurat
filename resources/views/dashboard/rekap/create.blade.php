@@ -53,6 +53,7 @@
                             <option value="izin">Izin</option>
                             <option value="sakit">Sakit</option>
                             <option value="alpa">Alpa</option>
+                            <option value="terlambat">Terlambat</option>
                         </select>
                         @error('status')
                             <small class="text-danger">{{ $message }}</small>

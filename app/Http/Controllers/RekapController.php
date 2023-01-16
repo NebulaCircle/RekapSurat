@@ -118,6 +118,7 @@ class RekapController extends Controller
         $idAjaran = TahunAjaran::where('tahun_ajaran',"$tahunSekarang / $tahunDepan")->first();
 
         if(Request()->get('foto_surat')){
+            dd(Request()->get("foto_surat"));
             $file = Request()->file('foto_surat');
             $nameFile = time().$file->getClientOriginalName();
             $file->move(public_path('/file-surat'),$nameFile);
@@ -126,7 +127,7 @@ class RekapController extends Controller
 
 
 
-        $rekap->update(array_merge(Request()->except(['_token','_method'])));
+        $rekap->update(array_merge(Request()->except(['_token','_method',"foto_surat"])));
         alert()->success('Data berhasil di ubah', 'Berhasil');
         
         return redirect("/admin/rekap")->with('pesan','data berhasil di edit');
