@@ -82,20 +82,22 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Unggah file di sini</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Download template excel</h5>
+                    <a href="/templateExcel/jurusan.xlsx" download class="btn btn-success">Download</a>
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button> --}}
                 </div>
-                <form action="/import/jurusan" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Unggah file di sini</h5>
+                    <form action="/import/jurusan" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <input type="file" name="file" class="form-control">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Import</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Import</button>
+                </div>
                 </form>
             </div>
         </div>
