@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label>Nip</label>
                                         <input type="text" name="nip" class="form-control"
-                                            value="{{ $guru->nip }}" required="">
+                                            value="{{ $guru->nip }}">
                                         @error('nip')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror

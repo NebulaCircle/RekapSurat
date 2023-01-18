@@ -29,13 +29,13 @@
                                 <td>{{ $ta->tahun_ajaran }}</td>
                                 <td>{{ $ta->semester }}</td>
                                 <td><a href="/admin/tahun_ajaran/{{ $ta->id }}/edit" class="btn btn-success">Edit</a>
-                                    <form id="delete" class="d-inline" action="/admin/tahun_ajaran/{{ $ta->id }}"
-                                        method="post">
+                                    <form id="delete{{ $ta->id }}" class="d-inline"
+                                        action="/admin/tahun_ajaran/{{ $ta->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger"
                                             data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
-                                            data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
+                                            data-confirm-yes="document.querySelector('#delete{{ $ta->id }}').submit()">Hapus</button>
                                     </form>
                                 </td>
 

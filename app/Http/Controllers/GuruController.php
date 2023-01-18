@@ -39,13 +39,13 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nip' => 'required|numeric|min:18|max:18',
+            // 'nip' => 'required|numeric|min:18|max:18',
             'nama_lengkap' => 'required|string',
             'jk' => 'required',
         ]);
 
         Guru::create($request->except('_token'));
-        alert()->success('Guru berhasil Di Tambahkan');
+        alert()->success('info','Guru berhasil di tambahkan');
         return redirect('/admin/guru')->with('pesan','kelas berhasil di tambahkan');
     }
 
@@ -81,13 +81,13 @@ class GuruController extends Controller
     public function update(Request $request, Guru $guru)
     {
          $request->validate([
-            'nip' => 'required|min:18|max:18',
-            'nama_lengkap' => 'required',
+            // 'nip' => 'required|min:18|max:18',
+            'nama_lengkap' => 'required|string',
             'jk' => 'required',
         ]);
 
         $guru->update($request->except('_token','_method'));
-        alert()->success('Guru berhasil Di Edit');
+        alert()->success("info",'Guru berhasil di edit');
         return redirect('/admin/guru')->with('pesan','guru berhasil di tambah');
     }
 
@@ -100,6 +100,8 @@ class GuruController extends Controller
     public function destroy(Guru $guru)
     {
         $guru->delete();
+        alert()->success("info",'Guru berhasil di hapus');
+
         return redirect('/admin/guru');
     }
 }

@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label>Nip</label>
                                         <input placeholder="Masukkan NIP" type="text" value="{{ old('nip') }}"
-                                            name="nip" class="form-control" required="">
+                                            name="nip" class="form-control">
                                         @error('nip')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror

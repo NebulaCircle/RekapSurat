@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Kelas;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -14,11 +15,41 @@ class SiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $siswa = Siswa::with(['kelas'=>function($e){
-            $e->with('jurusan');
-        }])->paginate(20);
-        return view("dashboard.siswa.index",compact('siswa'));
+    {     
+        $tahunAjaran = session()->get('tahun_ajaran');
+        if (Request()->tahun_ajaran) {
+            $tahunAjaran = Request()->tahun_ajaran;
+        }
+
+        $q = Request()->q;
+        $tingkatan = Request()->tingkatan;
+        $no_kelas = Request()->no_kelas;
+        $jurusan = Request()->jurusan;
+        $siswa = Siswa::with(['kelas'])->whereHas('kelas.tahunAjaran',function($e)use($tahunAjaran){
+            $e->where('tahun_ajaran',$tahunAjaran);
+        });
+
+        if($q){
+            $siswa->where("nama_lengkap","like","%$q%");
+        }
+     
+        if($tingkatan){$siswa->wherehas('kelas',function($e) use ($tingkatan){
+            $e->where('tingkatan',$tingkatan);
+        });}
+        if($no_kelas){$siswa->wherehas('kelas',function($e) use ($no_kelas){
+            $e->where('no_kelas',$no_kelas);
+        });}
+        if($jurusan){$siswa->wherehas('kelas.jurusan',function($e) use ($jurusan){
+            $e->where('kode_jurusan',$jurusan);
+        });}
+        
+
+
+        $siswa = $siswa->paginate(20);
+        $jurusan = Jurusan::all();
+        // dd($siswa->toArray());
+
+        return view("dashboard.siswa.index",compact('siswa','jurusan'));
     }
 
     /**
@@ -42,12 +73,13 @@ class SiswaController extends Controller
     {
         Request()->validate([
             'nama_lengkap'=>'required|string',
-            'nisn'=>'required|numeric|min:10|max:10',
+            'nis'=>'required',
             'jk'=>'required',
             'id_kelas'=>'required',
         ]);
-        Siswa::create(Request()->except('_token'));
-        alert()->success('SIswa berhasil di Tambahkan');
+        $siswa = Siswa::create(Request()->except('_token','id_kelas'));
+        $siswa->kelas()->attach(Request()->id_kelas);
+        alert()->success('info','Siswa berhasil di Tambahkan');
 
         return redirect('/admin/siswa')->with('pesan','Siswa berhasil di tambahkan');
     }
@@ -86,12 +118,14 @@ class SiswaController extends Controller
     {
          Request()->validate([
             'nama_lengkap'=>'required|string',
-            'nisn'=>'required|numeric',
+            'nis'=>'required',
             'jk'=>'required',
             'id_kelas'=>'required',
         ]);
-        $siswa->update(Request()->except(['_token','_method']));
-        alert()->success('SIswa berhasil di ubah');
+        $siswa->update(Request()->except(['_token','_method','id_kelas']));
+        $siswa->kelas()->attach(Request()->id_kelas);
+
+        alert()->success("info",'Siswa berhasil di ubah');
 
         return redirect('/admin/siswa')->with('pesan','Siswa berhasil di ubah');
     }
@@ -104,6 +138,10 @@ class SiswaController extends Controller
      */
     public function destroy(Siswa $siswa)
     {
-        //
+        $siswa->delete();
+               alert()->success("info",'Siswa berhasil di hapus');
+        return redirect('/admin/siswa')->with('pesan','Siswa berhasil di ubah');
+
+
     }
 }

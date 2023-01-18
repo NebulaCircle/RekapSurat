@@ -40,10 +40,13 @@
                                         <td>{{ $g->jk == 'l' ? 'laki-laki' : 'perempuan' }}</td>
                                         <td>
                                             <a href="/admin/guru/{{ $g->id }}/edit" class="btn btn-success">Edit</a>
-                                            <form class="d-inline" action="/admin/guru/{{ $g->id }}" method="post">
+                                            <form id="delete{{ $g->id }}" class="d-inline"
+                                                action="/admin/guru/{{ $g->id }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                <button class="btn btn-danger"
+                                                    data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
+                                                    data-confirm-yes="document.querySelector('#delete{{ $g->id }}').submit()">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -74,7 +77,7 @@
                 <div class="modal-body">
                     <form action="/import/guru" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" class="form-control" required>
+                        <input type="file" name="file" class="form-control" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>

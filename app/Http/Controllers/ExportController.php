@@ -8,6 +8,8 @@ use App\Exports\kelasExport;
 use App\Exports\RekapExport;
 use App\Exports\siswaExport;
 
+use App\Models\Rekap;
+use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
@@ -37,6 +39,7 @@ class ExportController extends Controller
 
         public function rekapExport()
     {
+        
         return Excel::download(new RekapExport, 'rekap.xlsx');
     }
 

@@ -19,9 +19,9 @@
                         @enderror
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label class="w-100">Nisn</label>
-                        <input type="number" placeholder="NISN" class="form-control" name="nisn" id="">
-                        @error('nisn')
+                        <label class="w-100">Nis</label>
+                        <input type="text" placeholder="NIS" class="form-control" name="nis" id="">
+                        @error('nis')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

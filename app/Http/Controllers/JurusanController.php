@@ -50,7 +50,7 @@ class JurusanController extends Controller
         ]);
 
         Jurusan::create($request->except('_token'));
-        alert()->success('Jurusan berhasil di Tambahkan');
+        alert()->success("info",'Jurusan berhasil di Tambahkan');
 
         return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Tambahkan");
     }
@@ -94,7 +94,7 @@ class JurusanController extends Controller
         ]);
 
         $jurusan->update($request->except('_token'));
-        alert()->success('SIswa berhasil di ubah');
+        alert()->success("info",'Jurusan berhasil di ubah');
         return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Perbarui");
     }
 
@@ -107,6 +107,8 @@ class JurusanController extends Controller
     public function destroy(Jurusan $jurusan)
     {
         $jurusan->delete();
+        alert()->success("info",'Jurusan berhasil di hapus');
+
         return redirect('/admin/jurusan')->with('pesan', "Jurusan Berhasil Di Hapus");
     }
 }

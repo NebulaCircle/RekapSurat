@@ -11,11 +11,21 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-header">
-                <a href="/admin/siswa/create" class="btn btn-success">Tambah Siswa</a>
-                <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModalCenter">
-                    Import
-                </button>
+            <div class="card-header justify-content-between">
+                <div class="">
+                    <a href="/admin/siswa/create" class="btn btn-success">Tambah Siswa</a>
+                    <button type="button" class="btn btn-primary ml-3" data-toggle="modal"
+                        data-target="#exampleModalCenter">
+                        Import
+                    </button>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <form action="" class="" id="filter" method="get">
+                        <input type="text" class="form-control" placeholder="Search..." name="q" id="">
+                    </form>
+                </div>
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -23,7 +33,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Lengkap</th>
-                            <th>Nisn</th>
+                            <th>Nis</th>
                             <th>Jenis Kelamin</th>
                             <th>Kelas</th>
                             <th>Action</th>
@@ -33,23 +43,30 @@
                                 <td>{{ $loop->iteration + $siswa->perPage() * $siswa->currentPage() - $siswa->perPage() }}
                                 </td>
                                 <td>{{ $s->nama_lengkap }} </td>
-                                <td>{{ $s->nisn }}</td>
+                                <td>{{ $s->nis }}</td>
                                 <td>{{ $s->jk }}</td>
-                                <td>{{ $s->kelas->kelas }} {{ $s->kelas->jurusan->nama_jurusan }} {{ $s->kelas->no_kelas }}
+                                {{-- @dd($s->kelas[0]->jurusan->nama_jurusan) --}}
+                                <td>{{ $s->kelas[0]->tingkatan }} {{ $s->kelas[0]->jurusan->nama_jurusan }}
+                                    {{ $s->kelas[0]->no_kelas }}
                                 </td>
-                                <td><a href="/admin/tahun_ajaran/{{ $s->id }}/edit" class="btn btn-success">Edit</a>
-                                    <form id="delete" class="d-inline" action="/admin/tahun_ajaran/{{ $s->id }}"
-                                        method="post">
+                                <td><a href="/admin/siswa/{{ $s->id }}/edit" class="btn btn-success">Edit</a>
+                                    <form id="delete{{ $s->id }}" class="d-inline"
+                                        action="/admin/siswa/{{ $s->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger"
                                             data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
-                                            data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
+                                            data-confirm-yes="document.querySelector('#delete{{ $s->id }}').submit()">Hapus</button>
                                     </form>
                                 </td>
 
                             </tr>
                         @empty
+                            <tr>
+                                <td colspan="6" class="text-center">Tidak ada data (
+                                    pastikan sudah memilih tahun ajaran
+                                    yang benar)</td>
+                            </tr>
                         @endforelse
 
                     </table>
@@ -79,7 +96,7 @@
                         <input type="file" name="file" class="form-control">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>

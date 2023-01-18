@@ -19,9 +19,9 @@
                         Import
                     </button>
                 </div>
-                <form action="/admin/kelas" method="get">
+                {{-- <form action="/admin/kelas" method="get">
                     <button class="btn btn-warning"><span class="">Filter <i class="fa fa-bars"></i></span></button>
-                </form>
+                </form> --}}
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -31,6 +31,7 @@
                             <th>Tingkatan</th>
                             <th>No Kelas</th>
                             <th>Jurusan</th>
+                            <th>Tahun Ajaran</th>
                             <th>Action</th>
                         </tr>
 
@@ -38,21 +39,28 @@
                             <tr>
                                 <td>{{ $loop->iteration + $kelas->perPage() * $kelas->currentPage() - $kelas->perPage() }}
 
-                                <td>{{ $k->kelas }}</td>
+                                <td>{{ $k->tingkatan }}</td>
                                 <td>{{ $k->no_kelas }}</td>
                                 <td>{{ $k->jurusan->nama_jurusan }}</td>
+                                <td>{{ $k->tahunAjaran->tahun_ajaran }} {{ $k->tahunAjaran->semester }}</td>
                                 <td><a href="/admin/kelas/{{ $k->id }}/edit" class="btn btn-success">Edit</a>
-                                    <form class="d-inline" action="/admin/kelas/{{ $k->id }}" method="post">
+                                    <form id="delete{{ $k->id }}" class="d-inline"
+                                        action="/admin/kelas/{{ $k->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger"
                                             data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
-                                            data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
+                                            data-confirm-yes="document.querySelector('#delete{{ $k->id }}').submit()">Hapus</button>
                                     </form>
                                 </td>
 
                             </tr>
                         @empty
+                            <tr>
+                                <td colspan="6" class="text-center">Tidak ada data (
+                                    pastikan sudah memilih tahun ajaran
+                                    yang benar)</td>
+                            </tr>
                         @endforelse
 
                     </table>
@@ -83,7 +91,7 @@
                         <input type="file" name="file" class="form-control">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Import</button>
                     </div>
                 </form>

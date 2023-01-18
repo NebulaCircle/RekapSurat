@@ -1,16 +1,22 @@
  @php
-     $tahunAjaran = DB::table('tahun_ajaran')->get();
+     $tahunAjaran = DB::table('tahun_ajaran')
+         ->orderBy('tahun_ajaran', 'desc')
+         ->get();
      
      if (!Session::has('tahun_ajaran')) {
          Session::put('tahun_ajaran', Request()->tahun_ajaran);
+         Session::put('semester', Request()->semester);
          $thn = Session::get('tahun_ajaran', Request()->tahun_ajaran);
      } else {
          if (!Request()->tahun_ajaran) {
              $thn = Session::get('tahun_ajaran');
+             $sem = Session::get('semester');
          } else {
              Session::forget('tahun_ajaran');
              Session::put('tahun_ajaran', Request()->tahun_ajaran);
+             Session::put('semester', Request()->semester);
              $thn = Session::get('tahun_ajaran');
+             $sem = Session::get('semester');
          }
      }
      Session::save();
@@ -24,7 +30,7 @@
                          class="fas fa-search"></i></a></li>
          </ul>
          <div class="search-element">
-             <select onchange="this.form.submit()" name="tahun_ajaran" id=""
+             {{-- <select onchange="this.form.submit()" name="tahun_ajaran" id=""
                  class="pr-5 form-control rounded-pill">
                  <option value="" disabled selected>Pilih Tahun Ajaran</option>
                  @foreach ($tahunAjaran as $ta)
@@ -32,20 +38,20 @@
                          {{ $ta->tahun_ajaran }}
                          {{ $ta->semester }}</option>
                  @endforeach
-             </select>
-             {{-- <div class="dropdown d-inline">
-                 <a class="font-weight-600 bg-white form-control dropdown-toggle" data-toggle="dropdown" href="#"
-                     id="orders-month">{{ !$fil ? $montNum[date('m')] : $montNum[$fil] }}</a>
+             </select> --}}
+             <div class="dropdown d-inline">
+                 <a class="font-weight-600 bg-white form-control dropdown-toggle pr-3 text-decoration-none"
+                     data-toggle="dropdown" href="#" id="orders-month">{{ $thn . ' ' . $sem }}</a>
                  <ul class="dropdown-menu dropdown-menu-sm">
                      <li class="dropdown-title">Pilih Tahun Ajaran</li>
                      @foreach ($tahunAjaran as $ta)
-                         <li><a href="?tahun_ajaran={{ $ta->tahun_ajaran }}"
-                                 class="dropdown-item {{ $thn == $ta->tahun_ajaran ? 'active' : '' }}">
+                         <li><a href="?tahun_ajaran={{ $ta->tahun_ajaran }}&semester={{ $ta->semester }}"
+                                 class="dropdown-item {{ $thn == $ta->tahun_ajaran && $sem === $ta->semester ? 'active' : '' }}">
                                  {{ $ta->tahun_ajaran }}
                                  {{ $ta->semester }}</a></li>
                      @endforeach
                  </ul>
-             </div> --}}
+             </div>
          </div>
      </form>
      <ul class="navbar-nav navbar-right">

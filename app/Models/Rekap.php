@@ -14,6 +14,7 @@ class Rekap extends Model
     protected $hidden = ['id_siswa'];
     protected $fillable = ['id_siswa','id_walikelas','id_bk','status','tanggal','foto_surat','id_ajaran'];
     public $timestamps = false;
+    
     public function siswa()
     {
         return $this->belongsTo(Siswa::class,'id_siswa');

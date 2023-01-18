@@ -6,6 +6,7 @@ use App\Models\Rekap;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use App\Models\Siswa;
+use App\Models\TahunAjaran;
 
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -27,26 +28,36 @@ class RekapExport implements ShouldAutoSize,FromView,WithColumnWidths,WithDrawin
     public function view(): View
     {
         $rekap = Rekap::with(['siswa'])->whereHas('siswa',function($e){
-            $e->where('id_kelas',$this->kelas);
+            $e->with('kelas')->whereHas('kelas',function($s){
+                $s->where('kelas.id',$this->kelas);
+            });
             $e->whereMonth('tanggal',$this->bulan);
-            
         })->get();
-        if ($this->tahun_ajaran) {
+$siswa = Siswa::with('kelas')->whereHas('kelas',function($s){
+                                    $s->where('kelas.id',$this->kelas);
+                                    })->get();
+
+                                    $tahunAjaran = TahunAjaran::find($this->tahun_ajaran);
+        if (!$this->bulan) {
              $rekap = Rekap::with(['siswa'])
                         ->whereHas('siswa',function($e){
-                        $e->where('id_kelas',$this->kelas);
+                                    $e->with('kelas')->whereHas('kelas',function($s){
+                        $s->where('kelas.id',$this->kelas);
+                        });
                     })
                     ->with(['tahunAjaran'])
                         ->whereHas('tahunAjaran',function($e){
                         $e->where('id',$this->tahun_ajaran);
                     })
                     ->get();
-        }
 
-        $siswa = Siswa::where('id_kelas',$this->kelas)->get();
+        return view('dashboard.export.rekapTahun',compact('rekap','siswa','tahunAjaran'));
+        }
+        
+
         $bulan = $this->bulan;
 
-        return view('dashboard.export.index',compact('rekap','siswa','bulan'));
+        return view('dashboard.export.index',compact('rekap','siswa','bulan','tahunAjaran'));
     }
 
     public function drawings()

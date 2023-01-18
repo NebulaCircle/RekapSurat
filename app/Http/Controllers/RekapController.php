@@ -34,9 +34,16 @@ class RekapController extends Controller
      */
     public function create()
     {
-        $siswa = Siswa::all();
-        $guru = Guru::all();
+         $tahunAjaran = session()->get('tahun_ajaran');
+        if (Request()->tahun_ajaran) {
+            $tahunAjaran = Request()->tahun_ajaran;
+        }
 
+        $siswa = Siswa::with(['kelas'])->whereHas('kelas.tahunAjaran',function($e)use($tahunAjaran){
+            $e->where('tahun_ajaran',$tahunAjaran);
+        })->get();
+        $guru = Guru::all();
+        
         return view('dashboard.rekap.create',compact('siswa','guru'));
     }
 
@@ -52,21 +59,24 @@ class RekapController extends Controller
             'id_siswa'=>'required',
             'status'=>'required',
             'foto_surat'=>'required',
-            'id_walikelas'=>'required',
-            'id_bk'=>'required'
         ]);
         $tahunDepan = date('Y',strtotime('+1 year'));
         $tahunSekarang = date('Y');
+        $month = date('m');
+        $semester = $month >= 01 || $month <= 06 ?"genap":"ganjil";
+        
+        $y1 = $semester === "genap"?date("Y",strtotime("-1 year")):date("Y");
+        $y2 = $semester === "genap"?date("Y"):date("Y",strtotime("-1 year"));
+        $tahunajaran =$y1 ." / ".$y2; ;
 
-        $idAjaran = TahunAjaran::where('tahun_ajaran',"$tahunSekarang / $tahunDepan")->first();
+        $idAjaran = TahunAjaran::where('tahun_ajaran',"$tahunajaran")->where("semester",$semester)->first();
 
         $file = Request()->file('foto_surat');
         $nameFile = time().$file->getClientOriginalName();
         $file->move(public_path('/file-surat'),$nameFile);
 
 
-
-        Rekap::create(array_merge(Request()->except('_token'),['foto_surat'=>$nameFile,'id_ajaran'=>1]));
+        Rekap::create(array_merge(Request()->except('_token'),['foto_surat'=>$nameFile,'id_ajaran'=>$idAjaran->id]));
         alert()->success('Data berhasil di tambahkan', 'Berhasil');
 
         return redirect("/admin/rekap")->with('pesan','Rekap berhasil di tambahkan');
@@ -108,7 +118,6 @@ class RekapController extends Controller
         Request()->validate([
             'id_siswa'=>'required',
             'status'=>'required',
-            'id_walikelas'=>'required',
             'id_bk'=>'required'
         ]);
         

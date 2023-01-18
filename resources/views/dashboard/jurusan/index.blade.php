@@ -47,19 +47,20 @@
                                         <td>{{ $j->kode_jurusan }}</td>
                                         <td><a href="/admin/jurusan/{{ $j->id }}/edit"
                                                 class="btn btn-success">Edit</a>
-                                            <form id="delete" class="d-inline"
+                                            <form id="delete{{ $j->id }}" class="d-inline"
                                                 action="/admin/jurusan/{{ $j->id }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger"
                                                     data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
-                                                    data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
+                                                    data-confirm-yes="document.querySelector('#delete{{ $j->id }}').submit()">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                                        <td colspan="4" class="text-center">Tidak ada data pastikan sudah memilih tahun
+                                            ajaran yang benar</td>
                                     </tr>
                                 @endforelse
                             </table>

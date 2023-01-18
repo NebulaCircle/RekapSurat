@@ -22,30 +22,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="mb-3 col-lg-4">
-                        <label class="w-100">Wali Kelas</label>
-                        <select name="id_walikelas" class="form-control form-autocompelet" id="">
-                            <option value="" selected disabled>pilih wali kelas</option>
-                            @foreach ($guru as $g)
-                                <option value="{{ $g->id }}">{{ $g->nama_lengkap }}</option>
-                            @endforeach
-                        </select>
-                        @error('id_walikelas')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3 col-lg-4">
-                        <label class="w-100">BK</label>
-                        <select name="id_bk" class="form-control form-autocompelet" id="">
-                            <option value="" selected disabled>pilih guru bk</option>
-                            @foreach ($guru as $g)
-                                <option value="{{ $g->id }}">{{ $g->nama_lengkap }}</option>
-                            @endforeach
-                        </select>
-                        @error('id_bk')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+
                     <div class="mb-3 col-lg-4">
                         <label class="w-100">Keterangan</label>
                         <select name="status" class="form-control" id="">

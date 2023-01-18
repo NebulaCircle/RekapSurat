@@ -42,7 +42,7 @@ class TahunAjaranController extends Controller
         ]);
 
         TahunAjaran::create(Request()->except('_token'));
-        alert()->success('SIswa berhasil di Tambahkan');
+        alert()->success("info",'Tahun ajaran berhasil di Tambahkan');
 
         return redirect('/admin/tahun_ajaran')->with('pesan','Tahun ajaran berhasil di tambahkan');
     }
@@ -83,7 +83,7 @@ class TahunAjaranController extends Controller
             'tahun_ajaran'=>'required',
         ]);
         $tahunAjaran->update(Request()->except(['_token','_method']));
-        alert()->success('Tahun ajaran berhasil di ubah');
+        alert()->success("info",'Tahun ajaran berhasil di ubah');
 
         return redirect('/admin/tahun_ajaran')->with('pesan','Tahun ajaran berhasil di ubah');
     }
@@ -96,6 +96,9 @@ class TahunAjaranController extends Controller
      */
     public function destroy(TahunAjaran $tahunAjaran)
     {
-        //
+        $tahunAjaran->delete();
+        alert()->success("info",'Tahun ajaran berhasil di hapus');
+
+        return redirect()->back();
     }
 }

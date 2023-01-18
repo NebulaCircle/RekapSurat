@@ -20,17 +20,17 @@
                         <form action="/export/rekap/post" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <select name="id_kelas" id="" class="form-control form-autocompelet">
                                         <option value="" disabled selected>Pilih Kelas</option>
                                         @foreach ($kelas as $k)
-                                            <option value="{{ $k->id }}">{{ $k->kelas }}
+                                            <option value="{{ $k->id }}">{{ $k->tingkatan }}
                                                 {{ $k->jurusan->nama_jurusan }}
                                                 {{ $k->no_kelas }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <select name="bulan" id="" class="form-control form-autocompelet">
                                         <option value="" disabled selected>Pilih Bulan</option>
                                         <option value="01">Januari</option>
@@ -45,10 +45,18 @@
                                         <option value="10">Oktber</option>
                                         <option value="11">November</option>
                                         <option value="12">Desember</option>
-
                                     </select>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
+                                    <select name="tahun_ajaran" id="" class="form-control form-autocompelet">
+                                        <option value="" disabled selected>Pilih Tahun ajaran</option>
+                                        @foreach ($tahunAjaran as $ta)
+                                            <option value="{{ $ta->id }}">{{ $ta->tahun_ajaran }} {{ $ta->semester }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
                                     <button type="submit" class="btn btn-success">Export</button>
                                 </div>
                             </div>
@@ -71,7 +79,7 @@
                                     <select name="id_kelas" id="" class="form-control form-autocompelet">
                                         <option value="" disabled selected>Pilih Kelas</option>
                                         @foreach ($kelas as $k)
-                                            <option value="{{ $k->id }}">{{ $k->kelas }}
+                                            <option value="{{ $k->id }}">{{ $k->tingkatan }}
                                                 {{ $k->jurusan->nama_jurusan }}
                                                 {{ $k->no_kelas }}</option>
                                         @endforeach
@@ -81,7 +89,8 @@
                                     <select name="tahun_ajaran" id="" class="form-control form-autocompelet">
                                         <option value="" disabled selected>Pilih Tahun ajaran</option>
                                         @foreach ($tahunAjaran as $ta)
-                                            <option value="{{ $ta->id }}">{{ $ta->tahun_ajaran }} {{ $ta->semester }}
+                                            <option value="{{ $ta->id }}">{{ $ta->tahun_ajaran }}
+                                                {{ $ta->semester }}
                                             </option>
                                         @endforeach
                                     </select>

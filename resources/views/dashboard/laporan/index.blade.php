@@ -77,6 +77,7 @@
         let alpaPerBulan = JSON.parse(`<?php echo $alpaPerBulan; ?>`)
         let sakitPerBulan = JSON.parse(`<?php echo $sakitPerBulan; ?>`)
         let izinPerBulan = JSON.parse(`<?php echo $izinPerBulan; ?>`)
+        let terlambatPerBulan = JSON.parse(`<?php echo $terlambatPerBulan; ?>`)
         let array = JSON.parse(`<?php echo json_encode($array); ?>`)
 
         const ctx = document.getElementById('myChart');
@@ -101,10 +102,10 @@
         new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Sakit', 'Izin', 'Alpa'],
+                labels: ['Sakit', 'Izin', 'Alpa', 'Terlambat'],
                 datasets: [{
                     label: 'Total data',
-                    data: [sakitPerBulan, izinPerBulan, alpaPerBulan],
+                    data: [sakitPerBulan, izinPerBulan, alpaPerBulan, terlambatPerBulan],
                     borderWidth: 1
                 }]
             },
@@ -135,6 +136,10 @@
                     }, {
                         label: 'Alpa',
                         data: array['alpa'],
+                        borderWidth: 1
+                    }, {
+                        label: 'Terlambat',
+                        data: array['terlambat'],
                         borderWidth: 1
                     }
                 ]

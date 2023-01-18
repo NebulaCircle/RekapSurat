@@ -32,24 +32,24 @@
                         @forelse ($rekap as $r)
                             <tr>
                                 <td>{{ $loop->iteration + $rekap->perPage() * $rekap->currentPage() - $rekap->perPage() }}
-
                                 <td>{{ $r->siswa->nama_lengkap }}</td>
-                                <td>{{ $r->siswa->kelas->kelas }} {{ $r->siswa->kelas->jurusan->kode_jurusan }}
-                                    {{ $r->siswa->kelas->no_kelas }}</td>
-                                <td>{{ $r->bk->nama_lengkap }}</td>
-                                <td>{{ $r->walikelas->nama_lengkap }}</td>
+                                <td>{{ $r->siswa->kelas[0]->tingkatan }} {{ $r->siswa->kelas[0]->jurusan->kode_jurusan }}
+                                    {{ $r->siswa->kelas[0]->no_kelas }}</td>
+                                <td>{{ $r->siswa->kelas[0]->bk->nama_lengkap }}</td>
+                                <td>{{ $r->siswa->kelas[0]->walikelas->nama_lengkap }}</td>
                                 <td>{{ $r->tahunAjaran->tahun_ajaran }} {{ $r->tahunAjaran->semester }}</td>
                                 <td>{{ $r->status }}</td>
                                 <td>{{ date('d / m / Y', strtotime($r->tanggal)) }}</td>
 
-                                <td><a href="/admin/rekap/{{ $r->id }}/edit" class="btn btn-success">Edit</a>
-                                    <form id="delete" class="d-inline" action="/admin/rekap/{{ $r->id }}"
-                                        method="post">
+                                <td class="d-flex "><a href="/admin/rekap/{{ $r->id }}/edit"
+                                        class="btn btn-success mr-2">Edit</a>
+                                    <form id="delete{{ $r->id }}" class="d-inline "
+                                        action="/admin/rekap/{{ $r->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger"
                                             data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
-                                            data-confirm-yes="document.querySelector('#delete').submit()">Hapus</button>
+                                            data-confirm-yes="document.querySelector('#delete{{ $r->id }}').submit()">Hapus</button>
                                     </form>
 
                                 </td>
@@ -57,7 +57,9 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="9" class="text-center">Tidak Ada Data</td>
+                                <td colspan="9" class="text-center">Tidak ada data (
+                                    pastikan sudah memilih tahun ajaran
+                                    yang benar)</td>
                             </tr>
                         @endforelse
 

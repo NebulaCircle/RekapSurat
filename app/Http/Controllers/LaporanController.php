@@ -25,6 +25,9 @@ class LaporanController extends Controller
        $alpaPerBulan = Rekap::where('status','alpa')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
         $query->where('tahun_ajaran',$tahunAjaran);
        })->whereMonth('tanggal',$fil?$fil:date('m'))->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatPerBulan = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',$fil?$fil:date('m'))->orderByRaw("MONTH(tanggal) asc")->count();
 
         $array = [];
 
@@ -177,7 +180,57 @@ class LaporanController extends Controller
                         $alpaBulan10,
                         $alpaBulan11,
                         $alpaBulan12];
+
+         $terlambatBulan1 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',01)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan2 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',02)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan3 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',03)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan4 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',04)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan5 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',05)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan6 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',06)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan7 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',07)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan8 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal','08')->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan9 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal','09')->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan10 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',10)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan11 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',11)->orderByRaw("MONTH(tanggal) asc")->count();
+       $terlambatBulan12 = Rekap::where('status','terlambat')->with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        $query->where('tahun_ajaran',$tahunAjaran);
+       })->whereMonth('tanggal',12)->orderByRaw("MONTH(tanggal) asc")->count();
+
+       $array['terlambat'] = [$terlambatBulan1,
+                        $terlambatBulan2,
+                        $terlambatBulan3,
+                        $terlambatBulan4,
+                        $terlambatBulan5,
+                        $terlambatBulan6,
+                        $terlambatBulan7,
+                        $terlambatBulan8,
+                        $terlambatBulan9,
+                        $terlambatBulan10,
+                        $terlambatBulan11,
+                        $terlambatBulan12];
                         
-        return view('dashboard.laporan.index',compact('sakitPerBulan','izinPerBulan','alpaPerBulan','array','fil'));
+        return view('dashboard.laporan.index',compact('sakitPerBulan','izinPerBulan','alpaPerBulan','terlambatPerBulan','array','fil'));
     }
 }

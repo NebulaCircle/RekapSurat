@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\TahunAjaran;
 use App\Models\Jurusan;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -17,11 +18,19 @@ class KelasController extends Controller
     public function index()
     {
         $q = Request()->q;
-        $kelas = Kelas::with('jurusan')->paginate(20);
+         $tahunAjaran = session()->get('tahun_ajaran');
+        if (Request()->tahun_ajaran) {
+            $tahunAjaran = Request()->tahun_ajaran;
+        }
+        $kelas = Kelas::with('jurusan')->with('tahunAjaran')->whereHas("tahunAjaran",function($e)use($tahunAjaran){
+            $e->where('tahun_ajaran',$tahunAjaran);
+        })->with('siswa')->paginate(20);
 
         if ($q) {
-        $kelas = Kelas::where('kelas',$q)->with('jurusan')->paginate(20);;
-        }
+        $kelas = Kelas::where('tingkatan',$q)->whereHas("tahun_ajaran",function($e)use($tahunAjaran){
+            $e->where('tahun_ajaran',$tahunAjaran);
+        })->with('jurusan')->paginate(20);;
+    }
         return view('dashboard.kelas.index',compact('kelas','q'));
     }
 
@@ -34,8 +43,9 @@ class KelasController extends Controller
     {
         $tahunAjaran = TahunAjaran::all();
         $jurusan = Jurusan::all();
+        $guru = Guru::all();
 
-        return view('dashboard.kelas.create',compact('tahunAjaran','jurusan'));
+        return view('dashboard.kelas.create',compact('tahunAjaran','jurusan','guru'));
     }
 
     /**
@@ -47,13 +57,15 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         Request()->validate([
-            "kelas"=>'required',
-            'no_kelas'=>'required',
+            "tingkatan"=>'required',
             'id_jurusan'=>'required',
-            'id_ajaran'=>'required'
+            'id_ajaran'=>'required',
+            'id_walikelas'=>'required',
+            'id_bk'=>'required'
         ]);
+        // dd(Request()->except('_token'));
         Kelas::create(Request()->except('_token'));
-        alert()->success('Kelas berhasil di tambahkan');
+        alert()->success("info",'Kelas berhasil di tambahkan');
 
         return redirect("/admin/kelas")->with('pesan','kelas berhasil di tambahkan');
     }
@@ -80,8 +92,10 @@ class KelasController extends Controller
         $kelas = Kelas::find($id);
         $jurusan = Jurusan::all();
         $tahunAjaran = TahunAjaran::all();
+        $guru = Guru::all();
 
-       return view('dashboard.kelas.edit',compact('kelas','jurusan','tahunAjaran'));
+
+       return view('dashboard.kelas.edit',compact('kelas','jurusan','tahunAjaran','guru'));
     }
 
     /**
@@ -94,9 +108,11 @@ class KelasController extends Controller
     public function update(Request $request,$id)
     {
            Request()->validate([
-            "kelas"=>'required',
-            'no_kelas'=>'required',
-            'id_jurusan'=>'required'
+           "tingkatan"=>'required',
+            'id_jurusan'=>'required',
+            'id_ajaran'=>'required',
+            'id_walikelas'=>'required',
+            'id_bk'=>'required'
         ]);
         
         Kelas::where('id',$id)->update(Request()->except(['_token',"_method"]));
@@ -113,7 +129,6 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-       
         Kelas::find($id)->delete();
         return redirect("/admin/kelas")->with('pesan','kelas berhasil di hapus');
     }

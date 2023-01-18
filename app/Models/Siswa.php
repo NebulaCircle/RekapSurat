@@ -10,12 +10,12 @@ class Siswa extends Model
     use HasFactory;
     protected $table = "siswa";
     protected $hidden = ['id_kelas'];
-    protected $fillable = ['nama_lengkap','nisn','jk','id_kelas'];
+    protected $fillable = ['nama_lengkap','nis','jk','id_kelas'];
     public $timestamps = false;
 
 
       public function kelas()
     {
-        return $this->belongsTo(Kelas::class,'id_kelas');
+        return $this->belongsToMany(Kelas::class,'kelas_siswa','id_siswa','id_kelas');
     }
 }

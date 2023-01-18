@@ -85,8 +85,8 @@
                 REKAPITULASI
                 KETERLAMBATAN DAN
                 ABSENSI PESERTA DIDIK <br> SEMESTER
-                {{ $rekap[0]->tahunAjaran->semester == 'genap' ? 'GENAP' : 'GANJIL' }} TAHUN AJARAN
-                {{ $rekap[0]->tahunAjaran->tahun_ajaran }}</th>
+                {{ $tahunAjaran->semester == 'genap' ? 'GENAP' : 'GANJIL' }} TAHUN AJARAN
+                {{ $tahunAjaran->tahun_ajaran }}</th>
             <th></th>
             <th></th>
             <th></th>
@@ -99,15 +99,16 @@
             <td></td>
             <td colspan="10">Kelas / Keahlian</td>
             <td>:</td>
-            <td colspan="15">{{ $rekap[0]->siswa->kelas->kelas }} {{ $rekap[0]->siswa->kelas->jurusan->nama_jurusan }}
-                {{ $rekap[0]->siswa->kelas->no_kelas }}
+            <td colspan="15">{{ $siswa[0]->kelas[0]->tingkatan }}
+                {{ $siswa[0]->kelas[0]->jurusan->nama_jurusan }}
+                {{ $siswa[0]->kelas[0]->no_kelas }}
             </td>
         </tr>
         <tr>
             <td></td>
             <td colspan="10">Wali Kelas</td>
             <td>:</td>
-            <td colspan="15">{{ $rekap[0]->walikelas->nama_lengkap }}</td>
+            <td colspan="15">{{ $siswa[0]->kelas[0]->walikelas->nama_lengkap }}</td>
         </tr>
         <tr></tr>
         <tr>
@@ -118,7 +119,7 @@
                 Siswa</th>
             <th colspan="{{ $d }}"
                 style="font-size:13px;text-align: left;font-weight:bold;border: 5px solid #0000">
-                Bulan {{ $montNum[$bulan] }} {{ date('Y', strtotime($rekap[0]->tanggal)) }}
+                Bulan {{ $montNum[$bulan] }} {{ date('Y', strtotime("$y-$m-1")) }}
             </th>
             <th rowspan="2" colspan="4"
                 style="font-size:13px;text-align: center;vertical-align: middle;font-weight:bold;border: 5px solid black">
@@ -142,7 +143,6 @@
             <th style="font-size:13px;width: 2px;text-align: center;font-weight:bold;border: 5px solid black">A</th>
             <th style="font-size:13px;width: 2px;text-align: center;font-weight:bold;border: 5px solid black">T</th>
         </tr>
-
         @foreach ($siswa as $s)
             <tr>
                 <td style="text-align: center;border: 5px solid black">
@@ -188,6 +188,7 @@
                         }
                     }
                 @endphp
+
                 <td style="vertical-align: middle;text-align:center;border: 5px solid black">
                     <center>
                         {{ $S }}
@@ -268,7 +269,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td colspan="7">Wali Kelas</td>
+            <td colspan="10">Wali Kelas</td>
             <td></td>
             <td></td>
             <td></td>
@@ -283,14 +284,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td colspan="7">Guru Bimbingan Konseling</td>
+
+            <td colspan="10">Guru Bimbingan Konseling</td>
         </tr>
         <tr></tr>
         <tr></tr>
@@ -310,15 +305,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td colspan="7" style="text-decoration: underline;font-weight: bold">
-                {{ $rekap[0]->walikelas->nama_lengkap }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="10" style="text-decoration: underline;font-weight: bold">
+                {{ $siswa[0]->kelas[0]->walikelas->nama_lengkap }}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -334,8 +322,10 @@
             <td></td>
             <td></td>
 
-            <td colspan="7" style="text-decoration: underline;font-weight: bold">
-                {{ $rekap[0]->bk->nama_lengkap }}</td>
+
+
+            <td colspan="10" style="text-decoration: underline;font-weight: bold">
+                {{ $siswa[0]->kelas[0]->bk->nama_lengkap }}</td>
         </tr>
         <tr>
             <td></td>
@@ -349,14 +339,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td colspan="7" style="">NIP.</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="10" style="">NIP.</td>
             <td></td>
             <td></td>
             <td></td>
@@ -372,9 +355,11 @@
             <td></td>
             <td></td>
 
-            <td colspan="7" style="">NIP.</td>
+
+            <td colspan="10" style="">NIP.</td>
         </tr>
     </table>
+
 </body>
 
 </html>

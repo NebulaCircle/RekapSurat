@@ -5,7 +5,7 @@
                       class="display-4">📨</span> Sirat</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-              <a href="index.html">St</a>
+              <a href="{{ auth()->user()->role == 'admin' ? '/admin/dashboard' : 'dashboard' }}" class="display-5">📨</a>
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
@@ -48,18 +48,16 @@
                       </li>
                   </ul>
               </li>
-
               <li class="nav-item dropdown ">
-                  <a href="/admin/kelas" class="nav-link "><i class="fa fa-chalkboard"></i><span>Kelas</span></a>
+                  <a href="/admin/kelas" class="nav-link "><i class="fas fa-chalkboard"></i><span>Kelas</span></a>
               </li>
               <li class="nav-item dropdown ">
-                  <a href="/admin/jurusan" class="nav-link "><i class="fa fa-atom"></i><span>Jurusan</span></a>
+                  <a href="/admin/jurusan" class="nav-link "><i class="fas fa-atom"></i><span>Jurusan</span></a>
               </li>
               <li class="nav-item dropdown ">
-                  <a href="/admin/tahun_ajaran" class="nav-link "><i class="fa fa-calendar-alt"></i><span>Tahun
+                  <a href="/admin/tahun_ajaran" class="nav-link "><i class="fas fa-calendar-alt"></i><span>Tahun
                           Ajaran</span></a>
               </li>
-
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
