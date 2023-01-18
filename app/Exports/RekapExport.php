@@ -57,7 +57,15 @@ $siswa = Siswa::with('kelas')->whereHas('kelas',function($s){
 
         $bulan = $this->bulan;
 
+<<<<<<< HEAD
         return view('dashboard.export.index',compact('rekap','siswa','bulan','tahunAjaran'));
+=======
+        if($this->tahun_ajaran){
+        return view('dashboard.export.rekap-persemester',compact('rekap','siswa','bulan'));
+            
+        }
+        return view('dashboard.export.index',compact('rekap','siswa','bulan'));
+>>>>>>> 0b9adf90ebc40c2708c85f2431de526becb5701c
     }
 
     public function drawings()
