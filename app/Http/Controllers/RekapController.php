@@ -78,8 +78,8 @@ class RekapController extends Controller
         $file = Request()->file('foto_surat');
         $nameFile = time().$file->getClientOriginalName();
         // $file->move(public_path('/file-surat'),$nameFile);
-        $image = "data:image/png;base64,".base64_encode(file_get_contents($file->path()));
-        dd(base64_decode($image));
+        // $image = "data:image/png;base64,".base64_encode(file_get_contents($file->path()));
+        // dd(base64_decode($image));
         $file->store("","google");
         $files =  Storage::disk("google")->allFiles();
        $nameFile = $files[count($files) - 1];
