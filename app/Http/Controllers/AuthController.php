@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\TahunAjaran;
+
+
 class AuthController extends Controller
 {
     public function loginPage()
@@ -20,6 +23,29 @@ class AuthController extends Controller
        $remember =  Request()->remember ? true:false;
        $checkAdmin = array_merge(Request()->except('_token'),['role'=>'admin']);
        $checkUser = array_merge(Request()->except('_token'),['role'=>'admin']);
+
+
+      $month = date('m');
+      $semester = $month >= 01 || $month <= 06 ?"genap":"ganjil";
+      $y1 = $semester === "genap"?date("Y",strtotime("-1 year")):date("Y");
+      $y2 = $semester === "genap"?date("Y"):date("Y",strtotime("-1 year"));
+      $tahunajaran =$y1 ." / ".$y2; 
+      $thnada = TahunAjaran::where('tahun_ajaran',$tahunajaran)->where("semester","ganjil")->orWhere("semester","genap");
+      
+       if (!$thnada) {
+          if($semester === "genap"){
+         TahunAjaran::create([
+            "tahun_ajaran"=>$tahunajaran,
+            "semester"=>"ganjil"
+         ]);
+         TahunAjaran::create([
+            "tahun_ajaran"=>$tahunajaran,
+            "semester"=>"genap"
+         ]);
+       }
+      }
+
+
 
        if(Auth::attempt($checkAdmin,$remember)){
         return redirect('/admin/dashboard');

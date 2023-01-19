@@ -1,8 +1,7 @@
   <div class="main-sidebar">
       <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-              <a href="{{ auth()->user()->role == 'admin' ? '/admin/dashboard' : 'dashboard' }}"><span
-                      class="display-4">📨</span> Sirat</a>
+              <a href="{{ auth()->user()->role == 'admin' ? '/admin/dashboard' : 'dashboard' }}">BEKA </a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
               <a href="{{ auth()->user()->role == 'admin' ? '/admin/dashboard' : 'dashboard' }}" class="display-5">📨</a>
@@ -18,15 +17,15 @@
                   <a href="#" class="nav-link has-dropdown"><i
                           class="fas fa-file-export"></i><span>Exports</span></a>
                   <ul class="dropdown-menu">
-                      <li class="nav-item dropdown ">
+                      {{-- <li class="nav-item dropdown ">
                           <a href="/export/siswa" class="nav-link "><span>Export Siswa</span></a>
-                      </li>
+                      </li> --}}
                       <li class="nav-item dropdown ">
                           <a href="/export/rekap" class="nav-link "><span>Export Rekap</span></a>
                       </li>
-                      <li class="nav-item dropdown ">
+                      {{-- <li class="nav-item dropdown ">
                           <a href="/export/rekap" class="nav-link "><span>Export Jurusan</span></a>
-                      </li>
+                      </li> --}}
 
                   </ul>
               </li>

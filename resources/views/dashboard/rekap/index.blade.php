@@ -40,26 +40,30 @@
                                 <td>{{ $r->tahunAjaran->tahun_ajaran }} {{ $r->tahunAjaran->semester }}</td>
                                 <td>{{ $r->status }}</td>
                                 <td>{{ date('d / m / Y', strtotime($r->tanggal)) }}</td>
-
                                 <td class="d-flex "><a href="/admin/rekap/{{ $r->id }}/edit"
                                         class="btn btn-success mr-2">Edit</a>
                                     <form id="delete{{ $r->id }}" class="d-inline "
                                         action="/admin/rekap/{{ $r->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger"
+                                        <button class="btn btn-danger mr-2"
                                             data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
                                             data-confirm-yes="document.querySelector('#delete{{ $r->id }}').submit()">Hapus</button>
                                     </form>
-
+                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                        data-target="#detail{{ $r->id }}">
+                                        Detail
+                                    </button>
                                 </td>
+
 
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="9" class="text-center">Tidak ada data (
-                                    pastikan sudah memilih tahun ajaran
-                                    yang benar)</td>
+                                <td colspan="9" class="text-center font-weight-bold">Tidak ada data (
+                                    <b class="text-danger">pastikan sudah memilih tahun ajaran
+                                        yang benar</b> )
+                                </td>
                             </tr>
                         @endforelse
 
@@ -71,30 +75,22 @@
             </div>
 
 
+
         </div>
     </section>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Unggah file di sini</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/import/guru" method="POST" enctype="multipart/form-data">
-                        <input type="file" class="form-control">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+
+    @foreach ($rekap as $r)
+        <div class="modal fade" id="detail{{ $r->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <img src="{{ Storage::disk('google')->url($r->foto_surat) }}" class="img-fluid" alt="">
+
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
+
+    <!-- Modal -->
 @endsection

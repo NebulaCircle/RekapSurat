@@ -59,8 +59,10 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-center">Tidak ada data pastikan sudah memilih tahun
-                                            ajaran yang benar</td>
+                                        <td colspan="6" class="text-center font-weight-bold">Tidak ada data (
+                                            <b class="text-danger">pastikan sudah memilih tahun ajaran
+                                                yang benar</b> )
+                                        </td>
                                     </tr>
                                 @endforelse
                             </table>
@@ -82,7 +84,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Download template excel</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Download contoh template excel</h5>
                     <a href="/templateExcel/jurusan.xlsx" download class="btn btn-success">Download</a>
                     {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

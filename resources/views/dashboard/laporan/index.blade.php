@@ -71,7 +71,9 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
+    <script src="{{ asset('chart') }}/Chart.min.js"></script>
+
 
     <script>
         let alpaPerBulan = JSON.parse(`<?php echo $alpaPerBulan; ?>`)
@@ -106,7 +108,13 @@
                 datasets: [{
                     label: 'Total data',
                     data: [sakitPerBulan, izinPerBulan, alpaPerBulan, terlambatPerBulan],
-                    borderWidth: 1
+                    borderWidth: 1,
+                    // backgroundColor: ['rgba(71, 195, 99, 1)',
+                    //     'rgba(103, 119, 239,1)',
+                    //     'rgba(153, 102, 255, 0.8)',
+                    //     'rgba(255, 159, 64, 0.8)'
+                    // ],
+
                 }]
             },
             options: {
@@ -127,20 +135,27 @@
                 datasets: [{
                         label: 'Sakit',
                         data: array['sakit'],
-                        borderWidth: 1
+                        borderWidth: 1,
+                        // backgroundColor: ['#47c363']
                     },
                     {
                         label: 'Izin',
                         data: array['izin'],
-                        borderWidth: 1
+                        borderWidth: 1,
+                        // backgroundColor: ['#6777ef']
+
                     }, {
                         label: 'Alpa',
                         data: array['alpa'],
-                        borderWidth: 1
+                        borderWidth: 1,
+                        // backgroundColor: ['#6777ef']
+
                     }, {
                         label: 'Terlambat',
                         data: array['terlambat'],
-                        borderWidth: 1
+                        borderWidth: 1,
+                        // backgroundColor: ['#6777ef']
+
                     }
                 ]
             },

@@ -7,7 +7,7 @@ use App\Models\Rekap;
 use App\Models\Siswa;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
-
+use Storage;
 class RekapController extends Controller
 {
     /**
@@ -18,12 +18,16 @@ class RekapController extends Controller
     public function index()
     {
         $tahunAjaran = session()->get('tahun_ajaran');
+        $semester = session()->get('semester');
         if (Request()->tahun_ajaran) {
             $tahunAjaran = Request()->tahun_ajaran;
+            $semester = Request()->semester;
         }
-        $rekap = Rekap::with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran){
+        // dd(count());
+        $rekap = Rekap::with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran,$semester){
         $query->where('tahun_ajaran',$tahunAjaran);
-       })->paginate(20);
+        $query->where('semester',$semester);
+       })->orderBy('id','desc')->paginate(20);
         return view('dashboard.rekap.index',compact('rekap'));
     }
 
@@ -73,8 +77,12 @@ class RekapController extends Controller
 
         $file = Request()->file('foto_surat');
         $nameFile = time().$file->getClientOriginalName();
-        $file->move(public_path('/file-surat'),$nameFile);
-
+        // $file->move(public_path('/file-surat'),$nameFile);
+        $image = "data:image/png;base64,".base64_encode(file_get_contents($file->path()));
+        dd(base64_decode($image));
+        $file->store("","google");
+        $files =  Storage::disk("google")->allFiles();
+       $nameFile = $files[count($files) - 1];
 
         Rekap::create(array_merge(Request()->except('_token'),['foto_surat'=>$nameFile,'id_ajaran'=>$idAjaran->id]));
         alert()->success('Data berhasil di tambahkan', 'Berhasil');
@@ -118,7 +126,6 @@ class RekapController extends Controller
         Request()->validate([
             'id_siswa'=>'required',
             'status'=>'required',
-            'id_bk'=>'required'
         ]);
         
         $tahunDepan = date('Y',strtotime('+1 year'));
@@ -126,8 +133,8 @@ class RekapController extends Controller
 
         $idAjaran = TahunAjaran::where('tahun_ajaran',"$tahunSekarang / $tahunDepan")->first();
 
-        if(Request()->get('foto_surat')){
-            dd(Request()->get("foto_surat"));
+        
+        if(Request()->foto_surat){
             $file = Request()->file('foto_surat');
             $nameFile = time().$file->getClientOriginalName();
             $file->move(public_path('/file-surat'),$nameFile);

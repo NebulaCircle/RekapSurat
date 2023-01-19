@@ -25,7 +25,7 @@ class kelasImports implements ToModel, WithHeadingRow
     }
     public function model(array $row)
     {
-        if(!$row['walikelas'] && !$row['jurusan'] && !$row['no_kelas'] && !$row['kelas']){
+        if(!$row['wali_kelas'] && !$row['jurusan'] && !$row['no_kelas'] && !$row['tingkatan']){
              $this->error = true;
             $this->msg = "Format excel tidak sesuai";
             return;
@@ -33,15 +33,15 @@ class kelasImports implements ToModel, WithHeadingRow
 
         $this->count +=1;
         $month = date('m');
-       $semester = $month >= 01 || $month <= 06 ?"genap":"ganjil";
+        $semester = $month >= 01 || $month <= 06 ?"genap":"ganjil";
          $y1 = $semester === "genap"?date("Y",strtotime("-1 year")):date("Y");
         $y2 = $semester === "genap"?date("Y"):date("Y",strtotime("-1 year"));
        $tahunajaran =$y1 ." / ".$y2; ;
         $idajaran = TahunAjaran::where("tahun_ajaran",$tahunajaran)->where('semester',$semester)->first();
 
         $idJurusan = Jurusan::where('nama_jurusan',$row['jurusan'])->orWhere("kode_jurusan",$row['jurusan'])->first('id');
-        $idWalikelas = Guru::where('nama_lengkap',$row['walikelas'])->first('id');
-        $idBk = Guru::where('nama_lengkap',$row['bk'])->first('id');
+        $idWalikelas = Guru::where('nama_lengkap',$row['wali_kelas'])->first('id');
+        $idBk = Guru::where('nama_lengkap',$row['guru_bk'])->first('id');
 
 
 
@@ -50,7 +50,7 @@ class kelasImports implements ToModel, WithHeadingRow
             $this->msg = "Data jurusan belum terpenuhi. Tambahkan data jurusan terlebih dahulu";
             return;
         }
-        $kelas = Kelas::where('tingkatan',$row['kelas'])->where('no_kelas',$row['no_kelas'])->where('id_ajaran',$idajaran->id)->where('id_jurusan',$idJurusan->id)->first();
+        $kelas = Kelas::where('tingkatan',$row['tingkatan'])->where('no_kelas',$row['no_kelas'])->where('id_ajaran',$idajaran->id)->where('id_jurusan',$idJurusan->id)->first();
 
         if($kelas){
             $this->gagal +=1;
@@ -71,7 +71,7 @@ class kelasImports implements ToModel, WithHeadingRow
 
       $this->berhasil +=1;
         return new Kelas([
-            'tingkatan' => $row['kelas'],
+            'tingkatan' => $row['tingkatan'],
             'no_kelas' => $row['no_kelas'],
             'id_jurusan'=>$idJurusan->id,
             'id_walikelas'=>$idWalikelas->id,

@@ -5,19 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Sistem informasi BEKA</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('bootstrap') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('icons') }}/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('icons') }}/css/all.css">
 
     <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css') }}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
 <body class="antialiased">
@@ -35,9 +38,7 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad
-                        Nauval
-                        Azhar</a>
+                    Copyright &copy; 2023 <div class="bullet"></div>Support by <b>Smakensa.</b>
                 </div>
                 <div class="footer-right">
                     2.3.0
@@ -52,16 +53,10 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="{{ asset('template') }}/assets/js/stisla.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.min.js"
-        integrity="sha512-fYE9wAJg2PYbpJPxyGcuzDSiMuWJiw58rKa9MWQICkAqEO+xeJ5hg5qPihF8kqa7tbgJxsmgY0Yp51+IMrSEVg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="{{ asset('popper') }}/poper.js"></script>
+    <script src="{{ asset('nisecroll') }}/nise.min.js"></script>
+    <script src="{{ asset('template') }}/assets/js/stisla.js"></script>
 
 
 
@@ -69,8 +64,8 @@
 
     <!-- JS Libraies -->
     <script src="{{ asset('select2') }}/dist/js/select2.min.js"></script>
-    <script src="{{ asset('chart') }}/dist/Chart.min.js"></script>
-    <script src="{{ asset('chart') }}/dist/Chart.extension.js"></script>
+    <script src="{{ asset('chart') }}/Chart.bundle.min.js"></script>
+    <script src="{{ asset('chart') }}/Chart.extension.js"></script>
     <script src="{{ asset('bootstrap') }}/js/bootstrap.min.js"></script>
     <!-- Template JS File -->
     <script src="{{ asset('template') }}/assets/js/scripts.js"></script>

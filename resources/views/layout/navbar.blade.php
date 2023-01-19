@@ -6,16 +6,17 @@
      if (!Session::has('tahun_ajaran')) {
          Session::put('tahun_ajaran', Request()->tahun_ajaran);
          Session::put('semester', Request()->semester);
-         $thn = Session::get('tahun_ajaran', Request()->tahun_ajaran);
+         $thn2 = Session::get('tahun_ajaran', Request()->tahun_ajaran);
+         $sem = Session::get('semester');
      } else {
          if (!Request()->tahun_ajaran) {
-             $thn = Session::get('tahun_ajaran');
+             $thn2 = Session::get('tahun_ajaran');
              $sem = Session::get('semester');
          } else {
              Session::forget('tahun_ajaran');
              Session::put('tahun_ajaran', Request()->tahun_ajaran);
              Session::put('semester', Request()->semester);
-             $thn = Session::get('tahun_ajaran');
+             $thn2 = Session::get('tahun_ajaran');
              $sem = Session::get('semester');
          }
      }
@@ -34,19 +35,20 @@
                  class="pr-5 form-control rounded-pill">
                  <option value="" disabled selected>Pilih Tahun Ajaran</option>
                  @foreach ($tahunAjaran as $ta)
-                     <option {{ $thn == $ta->tahun_ajaran ? 'selected' : '' }} value="{{ $ta->tahun_ajaran }}">
+                     <option {{ $thn2 == $ta->tahun_ajaran ? 'selected' : '' }} value="{{ $ta->tahun_ajaran }}">
                          {{ $ta->tahun_ajaran }}
                          {{ $ta->semester }}</option>
                  @endforeach
              </select> --}}
-             <div class="dropdown d-inline">
+             <div class="dropdown w-100 d-inline">
                  <a class="font-weight-600 bg-white form-control dropdown-toggle pr-3 text-decoration-none"
-                     data-toggle="dropdown" href="#" id="orders-month">{{ $thn . ' ' . $sem }}</a>
-                 <ul class="dropdown-menu dropdown-menu-sm">
+                     data-toggle="dropdown" href="#" id="orders-month">Tahun Ajaran
+                     {{ $thn2 . ' Semester ' . $sem }}</a>
+                 <ul class="dropdown-menu dropdown-menu">
                      <li class="dropdown-title">Pilih Tahun Ajaran</li>
                      @foreach ($tahunAjaran as $ta)
                          <li><a href="?tahun_ajaran={{ $ta->tahun_ajaran }}&semester={{ $ta->semester }}"
-                                 class="dropdown-item {{ $thn == $ta->tahun_ajaran && $sem === $ta->semester ? 'active' : '' }}">
+                                 class="dropdown-item {{ $thn2 == $ta->tahun_ajaran && $sem === $ta->semester ? 'active' : '' }}">
                                  {{ $ta->tahun_ajaran }}
                                  {{ $ta->semester }}</a></li>
                      @endforeach
@@ -57,20 +59,13 @@
      <ul class="navbar-nav navbar-right">
          <li class="dropdown"><a href="#" data-toggle="dropdown"
                  class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                 <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                 <img alt="image" src="{{ asset('template') }}/assets/img/avatar/avatar-1.png"
+                     class="rounded-circle mr-1">
                  <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama_lengkap }}</div>
              </a>
              <div class="dropdown-menu dropdown-menu-right">
-                 <div class="dropdown-title">Logged in 5 min ago</div>
-                 <a href="features-profile.html" class="dropdown-item has-icon">
-                     <i class="far fa-user"></i> Profile
-                 </a>
-                 <a href="features-activities.html" class="dropdown-item has-icon">
-                     <i class="fas fa-bolt"></i> Activities
-                 </a>
-                 <a href="features-settings.html" class="dropdown-item has-icon">
-                     <i class="fas fa-cog"></i> Settings
-                 </a>
+                 <div class="dropdown-title"> {{ auth()->user()->nama_lengkap }}</div>
+
                  <div class="dropdown-divider"></div>
                  <a href="/logout" class="dropdown-item has-icon text-danger">
                      <i class="fas fa-sign-out-alt"></i> Logout

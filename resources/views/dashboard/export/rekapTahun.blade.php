@@ -89,18 +89,18 @@
         <tr></tr>
         <tr>
             <td></td>
-            <td colspan="10">Kelas / Keahlian</td>
+            <td colspan="6">Kelas / Keahlian</td>
             <td>:</td>
-            <td colspan="15">{{ $siswa[0]->kelas[0]->tingkatan }}
+            <td colspan="11">{{ $siswa[0]->kelas[0]->tingkatan }}
                 {{ $siswa[0]->kelas[0]->jurusan->nama_jurusan }}
                 {{ $siswa[0]->kelas[0]->no_kelas }}
             </td>
         </tr>
         <tr>
             <td></td>
-            <td colspan="10">Wali Kelas</td>
+            <td colspan="6">Wali Kelas</td>
             <td>:</td>
-            <td colspan="15">{{ $siswa[0]->kelas[0]->walikelas->nama_lengkap }}</td>
+            <td colspan="11">{{ $siswa[0]->kelas[0]->walikelas->nama_lengkap }}</td>
         </tr>
         <tr></tr>
         <tr>
@@ -114,7 +114,7 @@
             <th style="font-size:13px;text-align: center;vertical-align: middle;font-weight:bold;border: 5px solid black"
                 rowspan="3" colspan="2">
                 L / P</th>
-            <th rowspan="2" colspan="4"
+            <th rowspan="2" colspan="9"
                 style="font-size:13px;text-align: center;vertical-align: middle;font-weight:bold;border: 5px solid black">
                 Jumlah
             </th>
@@ -125,13 +125,17 @@
         <tr>
 
 
-            <th style="font-size:13px;width: 50px;text-align: center;font-weight:bold;border: 5px solid black">SAKIT
+            <th colspan="2"
+                style="font-size:13px;width: 50px;text-align: center;font-weight:bold;border: 5px solid black">SAKIT
             </th>
-            <th style="font-size:13px;width: 500px;text-align: center;font-weight:bold;border: 5px solid black">IJIN
+            <th colspan="2"
+                style="font-size:13px;width: 500px;text-align: center;font-weight:bold;border: 5px solid black">IJIN
             </th>
-            <th style="font-size:13px;width: 500px;text-align: center;font-weight:bold;border: 5px solid black">ALPA
+            <th colspan="2"
+                style="font-size:13px;width: 500px;text-align: center;font-weight:bold;border: 5px solid black">ALPA
             </th>
-            <th style="font-size:13px;width: 500px;text-align: center;font-weight:bold;border: 5px solid black">
+            <th colspan="3"
+                style="font-size:13px;width: 500px;text-align: center;font-weight:bold;border: 5px solid black">
                 TERLAMBAT
             </th>
         </tr>
@@ -185,20 +189,20 @@
                         }
                     }
                 @endphp
-                <td style="vertical-align: middle;text-align:center;border: 5px solid black">
+                <td colspan="2" style="vertical-align: middle;text-align:center;border: 5px solid black">
                     <center>
                         {{ $S }}
                     </center>
                 </td>
-                <td style="vertical-align: middle;text-align:center;border: 5px solid black">
+                <td colspan="2" style="vertical-align: middle;text-align:center;border: 5px solid black">
                     <center>
                         {{ $I }}</center>
                 </td>
-                <td style="vertical-align: middle;text-align:center;border: 5px solid black">
+                <td colspan="2" style="vertical-align: middle;text-align:center;border: 5px solid black">
                     <center>
                         {{ $A }}</center>
                 </td>
-                <td style="vertical-align: middle;text-align:center;border: 5px solid black">
+                <td colspan="3" style="vertical-align: middle;text-align:center;border: 5px solid black">
                     <center>
                         {{ $T }}</center>
                 </td>
@@ -228,16 +232,20 @@
                 <td colspan="2" style="min-width: 200px;max-width:250px;border: 5px solid black;text-align: center">
                     0</td>
 
-                <td style="vertical-align: middle;text-align:center;border: 5px solid black;text-align: center">
+                <td colspan="2"
+                    style="vertical-align: middle;text-align:center;border: 5px solid black;text-align: center">
                     0
                 </td>
-                <td style="vertical-align: middle;text-align:center;border: 5px solid black;text-align: center">
+                <td colspan="2"
+                    style="vertical-align: middle;text-align:center;border: 5px solid black;text-align: center">
                     0
                 </td>
-                <td style="vertical-align: middle;text-align:center;border: 5px solid black;text-align: center">
+                <td colspan="2"
+                    style="vertical-align: middle;text-align:center;border: 5px solid black;text-align: center">
                     0
                 </td>
-                <td style="vertical-align: middle;text-align:center;border: 5px solid black;text-align: center">
+                <td colspan="3"
+                    style="vertical-align: middle;text-align:center;border: 5px solid black;text-align: center">
                     0
                 </td>
             </tr>

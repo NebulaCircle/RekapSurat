@@ -35,7 +35,7 @@ class guruImports implements ToModel,WithHeadingRow
         return new Guru([
             // 'nip' => $row['nip'],
             'nama_lengkap' => $row['nama_lengkap'],
-            'jk' => $row['jk'],
+            'jk' => $row['gender'],
         ]);
 
        } catch (\Throwable $e) {

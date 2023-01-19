@@ -31,7 +31,7 @@
                                     <th>Jenis Kelamin</th>
                                     <th>Action</th>
                                 </tr>
-                                @foreach ($guru as $g)
+                                @forelse ($guru as $g)
                                     <tr>
                                         <td>{{ $loop->iteration + $guru->perPage() * $guru->currentPage() - $guru->perPage() }}
 
@@ -50,7 +50,14 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center font-weight-bold">Tidak ada data (
+                                            <b class="text-danger">pastikan sudah memilih tahun ajaran
+                                                yang benar</b> )
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </table>
                         </div>
                         <div class="card-footer text-right">
@@ -69,7 +76,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Download template excel</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Download contoh template excel</h5>
                     <a href="/templateExcel/guru.xlsx" download class="btn btn-success">Download</a>
                     {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

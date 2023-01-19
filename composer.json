@@ -11,10 +11,12 @@
         "php": "^7.3",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
+        "google/apiclient": "^2.13",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "maatwebsite/excel": "^3.1",
+        "nao-pon/flysystem-google-drive": "~1.1",
         "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {

@@ -30,14 +30,14 @@ class siswaImports implements ToModel,WithHeadingRow
             return;
         };
         $this->count += 1;
-        $idKelas = Kelas::where('tingkatan',$row['kelas'])->where('no_kelas',$row['no_kelas'])->with(['jurusan'])->whereHas('jurusan', function($e) use($row) {
+        $idKelas = Kelas::where('tingkatan',$row['tingkatan'])->where('no_kelas',$row['no_kelas'])->with(['jurusan'])->whereHas('jurusan', function($e) use($row) {
                         $e->where('nama_jurusan',$row['jurusan']);
                         $e->orWhere('kode_jurusan',$row['jurusan']);
                     })->first();
 
         $siswaId = Siswa::where('nama_lengkap',$row['nama'])->with(['kelas', 'kelas.jurusan'])->whereHas('kelas', function($e) use($row) {
             
-            $e->where('tingkatan',$row['kelas']);
+            $e->where('tingkatan',$row['tingkatan']);
             $e->where('no_kelas',$row['no_kelas']);
            
         })->whereHas('kelas.jurusan', function($query) use ($row){

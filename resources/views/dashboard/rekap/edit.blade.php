@@ -7,7 +7,7 @@
             <h4>Tambah Data </h4>
         </div>
         <div class="card-body">
-            <form action="/admin/rekap/{{ $rekap->id }}" method="post">
+            <form action="/admin/rekap/{{ $rekap->id }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -43,6 +43,9 @@
                     <div class="mb3 col-lg4">
                         <label for="" class="w-100">Unggah Foto</label>
                         <input type="file" class="form-control" name="foto_surat">
+                        @error('foto_surat')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Simpan</button>
