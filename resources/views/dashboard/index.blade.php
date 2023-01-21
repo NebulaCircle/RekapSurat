@@ -19,7 +19,7 @@
         ];
     @endphp
     <section class="section">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="card card-statistic-2">
                     <div class="card-stats">
@@ -69,6 +69,10 @@
                                 <div class="card-stats-item-count">{{ $alpa }}</div>
                                 <div class="card-stats-item-label">Alpa</div>
                             </div>
+                            <div class="card-stats-item">
+                                <div class="card-stats-item-count">{{ $telat }}</div>
+                                <div class="card-stats-item-label">Terlambat</div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-icon shadow-primary bg-primary">
@@ -84,38 +88,61 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-chart">
-                        <canvas id="balance-chart" height="80"></canvas>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Siswa</h4>
+            <div class=" col-lg-8 col-md-8 col-sm-12">
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-4 col-sm-12">
+                        <div class="card card-statistic-2">
+                            <div class="card-chart">
+                                {{-- <canvas id="balance-chart" height="80"></canvas> --}}
+                            </div>
+                            <div class="card-icon shadow-primary bg-primary">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Siswa</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $siswa }}
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            {{ $siswa }}
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-12">
+                        <div class="card card-statistic-2">
+                            <div class="card-chart">
+                                {{-- <canvas id="sales-chart" height="80"></canvas> --}}
+                            </div>
+                            <div class="card-icon shadow-primary bg-primary">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Jurusan</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $jurusan }}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-chart">
-                        <canvas id="sales-chart" height="80"></canvas>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-atom"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Jurusan</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $jurusan }}
+                    <div class="col-lg-6 col-md-4 col-sm-12">
+                        <div class="card card-statistic-2">
+                            <div class="card-chart">
+                                {{-- <canvas id="sales-chart" height="80"></canvas> --}}
+                            </div>
+                            <div class="card-icon shadow-primary bg-primary">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Kelas</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $kelas }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
