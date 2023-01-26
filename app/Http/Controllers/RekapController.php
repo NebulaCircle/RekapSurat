@@ -62,7 +62,7 @@ class RekapController extends Controller
         Request()->validate([
             'id_siswa'=>'required',
             'status'=>'required',
-            'foto_surat'=>'required',
+            'foto_surat'=>'required|file|max:1000',
         ]);
         $tahunDepan = date('Y',strtotime('+1 year'));
         $tahunSekarang = date('Y');
@@ -77,12 +77,14 @@ class RekapController extends Controller
 
         $file = Request()->file('foto_surat');
         $nameFile = time().$file->getClientOriginalName();
-        // $file->move(public_path('/file-surat'),$nameFile);
+        $file->move(public_path('/file-surat'),$nameFile);
+
+        
         // $image = "data:image/png;base64,".base64_encode(file_get_contents($file->path()));
         // dd(base64_decode($image));
-        $file->store("","google");
-        $files =  Storage::disk("google")->allFiles();
-       $nameFile = $files[count($files) - 1];
+        // $file->store("","google");
+        // $files =  Storage::disk("google")->allFiles();
+    //    $nameFile = $files[count($files) - 1];
 
         Rekap::create(array_merge(Request()->except('_token'),['foto_surat'=>$nameFile,'id_ajaran'=>$idAjaran->id]));
         alert()->success('Data berhasil di tambahkan', 'Berhasil');

@@ -39,7 +39,7 @@
                                 <td>{{ $r->siswa->kelas[0]->walikelas->nama_lengkap }}</td>
                                 <td>{{ $r->tahunAjaran->tahun_ajaran }} {{ $r->tahunAjaran->semester }}</td>
                                 <td>{{ $r->status }}</td>
-                                <td>{{ date('d / m / Y', strtotime($r->tanggal)) }}</td>
+                                <td>{{ date('d / m / Y H:i:s', strtotime($r->tanggal)) }}</td>
                                 <td class="d-flex "><a href="/admin/rekap/{{ $r->id }}/edit"
                                         class="btn btn-success mr-2">Edit</a>
                                     <form id="delete{{ $r->id }}" class="d-inline "
@@ -47,7 +47,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger mr-2"
-                                            data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
+                                            data-confirm="Yakin?|Data yang dihapus tidak dapat dikembalikan?"
                                             data-confirm-yes="document.querySelector('#delete{{ $r->id }}').submit()">Hapus</button>
                                     </form>
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
@@ -85,7 +85,8 @@
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <img src="{{ Storage::disk('google')->url($r->foto_surat) }}" class="img-fluid" alt="">
+                    {{-- <img src="{{ Storage::disk('google')->url($r->foto_surat) }}" class="img-fluid" alt=""> --}}
+                    <img src="{{ asset('file-surat') }}/{{ $r->foto_surat }}" class="img-fluid" alt="">
 
                 </div>
             </div>

@@ -20,7 +20,7 @@ class AuthController extends Controller
         'password'=>'required',
        ]);
        
-       $remember =  Request()->remember ? true:false;
+       
        $checkAdmin = array_merge(Request()->except('_token'),['role'=>'admin']);
        $checkUser = array_merge(Request()->except('_token'),['role'=>'admin']);
 
@@ -31,6 +31,7 @@ class AuthController extends Controller
       $y2 = $semester === "genap"?date("Y"):date("Y",strtotime("-1 year"));
       $tahunajaran =$y1 ." / ".$y2; 
       $thnada = TahunAjaran::where('tahun_ajaran',$tahunajaran)->where("semester","ganjil")->orWhere("semester","genap");
+      
       
        if (!$thnada) {
           if($semester === "genap"){
@@ -45,11 +46,11 @@ class AuthController extends Controller
        }
       }
 
+      
 
-
-       if(Auth::attempt($checkAdmin,$remember)){
+       if(Auth::attempt($checkAdmin)){
         return redirect('/admin/dashboard');
-       }else if(Auth::attempt($checkUser,$remember)){
+       }else if(Auth::attempt($checkUser)){
         return redirect('/dashboard');
        }{
          return redirect()->back()->with('msg','username atau password salah');

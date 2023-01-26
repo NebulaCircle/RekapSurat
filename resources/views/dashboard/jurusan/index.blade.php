@@ -53,7 +53,7 @@
                                                 @method('DELETE')
                                                 <button class="btn btn-danger"
                                                     data-confirm="Yakin?|Data yang di hapus tidak dapat di kembalikan?"
-                                                    data-confirm-yes="document.querySelector('#delete{{ $j->id }}').submit()">Hapus</button>
+                                                    data-confirm-yes="d ">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

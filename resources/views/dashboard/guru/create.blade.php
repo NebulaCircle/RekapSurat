@@ -37,7 +37,7 @@
                             </div>
 
 
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label class="w-100">Jenis kelamin</label>
@@ -48,7 +48,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-success" type="submit">Simpan</button>

@@ -24,7 +24,9 @@ class DashboardController extends Controller
         $query->where('tahun_ajaran',$tahunAjaran);
        })->count();
 
-        $kelas = Kelas::count();
+        $kelas = Kelas::with("tahunAjaran")->whereHas("tahunAjaran",function($q)use($semester,$tahunAjaran){
+            $q->where('tahun_ajaran',$tahunAjaran);
+        })->count();
         $jurusan = Jurusan::count();
         $rekap = Rekap::with(['tahunAjaran'])->whereHas('tahunAjaran',function ($query) use ($tahunAjaran,$semester){
         $query->where('tahun_ajaran',$tahunAjaran)->where('semester',$semester);

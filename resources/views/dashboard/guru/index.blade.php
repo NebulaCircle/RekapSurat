@@ -28,7 +28,7 @@
                                     <th>No</th>
                                     <th>Nip</th>
                                     <th>Nama</th>
-                                    <th>Jenis Kelamin</th>
+                                    {{-- <th>Jenis Kelamin</th> --}}
                                     <th>Action</th>
                                 </tr>
                                 @forelse ($guru as $g)
@@ -37,7 +37,7 @@
 
                                         <td>{{ $g->nip }}</td>
                                         <td>{{ $g->nama_lengkap }}</td>
-                                        <td>{{ $g->jk == 'l' ? 'laki-laki' : 'perempuan' }}</td>
+                                        {{-- <td>{{ $g->jk == 'l' ? 'laki-laki' : 'perempuan' }}</td> --}}
                                         <td>
                                             <a href="/admin/guru/{{ $g->id }}/edit" class="btn btn-success">Edit</a>
                                             <form id="delete{{ $g->id }}" class="d-inline"

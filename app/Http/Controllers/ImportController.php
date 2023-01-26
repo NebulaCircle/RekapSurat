@@ -21,7 +21,7 @@ class ImportController extends Controller
 
         $file = $request->file('file');
         $nama_file =Rand(1,30).$file->getClientOriginalName();
-        $file->move(public_path('Excel'),$nama_file);
+        // $file->move(public_path('Excel'),$nama_file);
 
         $siswa = new siswaImports();
         Excel::import($siswa, public_path('Excel/'.$nama_file));
@@ -45,7 +45,7 @@ class ImportController extends Controller
 
         $file = $request->file('file');
         $nama_file =Rand(1,30).$file->getClientOriginalName();
-        $file->move(public_path('Excel'),$nama_file);
+        // $file->move(public_path('Excel'),$nama_file);
 
         $jurusan = new jurusanImports;
         Excel::import($jurusan, public_path('Excel/'.$nama_file));
@@ -69,7 +69,7 @@ class ImportController extends Controller
 
         $file = $request->file('file');
         $nama_file =Rand(1,30).$file->getClientOriginalName();
-        $file->move(public_path('Excel'),$nama_file);
+        // $file->move(public_path('Excel'),$nama_file);
         $guru = new guruImports;
         Excel::import($guru, public_path('Excel/'.$nama_file));
 
@@ -92,7 +92,7 @@ class ImportController extends Controller
 
         $file = $request->file('file');
         $nama_file =Rand(1,30).$file->getClientOriginalName();
-        $file->move(public_path('Excel'),$nama_file);
+        // $file->move(public_path('Excel'),$nama_file);
         
         $kelas  = new kelasImports;
         try {
@@ -102,10 +102,11 @@ class ImportController extends Controller
                 return redirect('/admin/jurusan');
             }
         } catch (\Throwable $e) {
-            dd($e);
+            alert()->error('Error',"Data tidak sesuai dengan yang sudah ada".$kelas->getCount()."\n Data berhasil di import ".$kelas->getBerhasil()."\n Data gagal di import ".$kelas->getGagal());
+        return redirect('/admin/kelas');
         }
         
-              alert()->success('Kelas berhasil di import',"Total data  di import ".$kelas->getCount()."\n Data berhasil di import ".$kelas->getBerhasil()."\n Data gagal di import ".$kelas->getGagal());
+              alert()->success('Kelas berhasil di import');
         return redirect('/admin/kelas');
    }
 }

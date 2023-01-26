@@ -41,7 +41,7 @@ class GuruController extends Controller
         $request->validate([
             // 'nip' => 'required|numeric|min:18|max:18',
             'nama_lengkap' => 'required|string',
-            'jk' => 'required',
+            // 'jk' => 'required',
         ]);
 
         Guru::create($request->except('_token'));
@@ -83,7 +83,7 @@ class GuruController extends Controller
          $request->validate([
             // 'nip' => 'required|min:18|max:18',
             'nama_lengkap' => 'required|string',
-            'jk' => 'required',
+            // 'jk' => 'required',
         ]);
 
         $guru->update($request->except('_token','_method'));

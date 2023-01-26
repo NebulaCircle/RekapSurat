@@ -36,7 +36,7 @@
                                 </div>
 
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-6">
 
                                     <div class="form-group">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-success" type="submit">Simpan</button>
